@@ -1,6 +1,6 @@
 """Settings for pelican."""
 AUTHOR = 'Sungjoo Ha'
-SITENAME = 'shurain.net'
+SITENAME = 'sh.'
 SITEURL = 'http://blog.shurain.net'
 SITE_URL = SITEURL
 TIMEZONE = 'UTC'
