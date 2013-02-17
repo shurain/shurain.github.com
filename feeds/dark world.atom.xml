@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>sh.</title><link href="http://blog.shurain.net/" rel="alternate"></link><link href="http://blog.shurain.net/feeds/dark%20world.atom.xml" rel="self"></link><id>http://blog.shurain.net/</id><updated>2013-02-18T00:00:00+00:00</updated><entry><title>Dark World Part I</title><link href="http://blog.shurain.net/2013/02/darkworld1.html" rel="alternate"></link><updated>2013-02-18T00:00:00+00:00</updated><author><name>Sungjoo Ha</name></author><id>tag:blog.shurain.net,2013-02-18:2013/02/darkworld1.html</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;2012년 겨울에 &lt;a href="http://www.kaggle.com/"&gt;Kaggle&lt;/a&gt;에 &lt;a href="http://www.kaggle.com/c/DarkWorlds"&gt;Observing Dark Worlds&lt;/a&gt;라는 대회가 열렸다.
+대회의 목표는 하늘 사진을 찍고 어떤 위치에 암흑 물질이 있는지 찾아내는 것이었다.&lt;/p&gt;
+&lt;p&gt;암흑 물질은 빛과 상호작용하지 않으면서 질량을 가지는 물질이다.
+자체적으로 빛을 내뿜거나 흡수하지는 않지만 질량을 갖기 때문에 그 중력에 의한 영향으로 주변의 빛에 영향을 줄 수가 있다.&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;img alt="Dark matter halo" src="./static/images/arc.png" /&gt;
+&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;위의 이미지에서는 암흑 물질의 영향에 의해 은하가 내뿜는 빛이 호(arc)를 그리는 것을 볼 수 있다.
+이런 효과에 의해 암흑 물질을 직접 관측할 수는 없지만 그 위치를 짐작하는 것이 가능하다.&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;img alt="Effect of dark matter halo" src="./static/images/reorderdarkmatter.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Credit: Observing Dark Worlds Kaggle Competition
+&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;만약 빛을 내는 은하들이 만약 모두 원형이라면 암흑 물질에 의해 타원형으로 관측되는 모습이 바뀔 것이므로 이를 통해 쉽게 암흑 물질의 위치를 추측할 수 있다.
+하지만 현실은 그렇게 만만하지 않아서 애초에 은하들이 타원형을 띄고 있다.
+그렇기 때문에 은하들이 애초에 그런 모양인지 암흑 물질의 영향으로 뒤틀린 것인지 알아내는 것은 쉬운 문제가 아니다.&lt;/p&gt;
+&lt;h2&gt;Details&lt;/h2&gt;
+&lt;p&gt;문제를 풀기 위해 주어진 데이터는 암흑 물질의 위치가 주어진 training set 300개와 과 암흑 물질의 위치가 주어지지 않은 test set 120개였다.
+각 데이터는 시뮬레이션으로 생성된 하늘 데이터로서 각 하늘에는 1~3개의 암흑 물질과 300~740개의 은하가 존재하도록 만들어졌다.
+각 은하는 x, y 좌표와 타원의 정도인 ellipticity를 나타내는 값 e1과 e2가 주어졌다.&lt;/p&gt;
+&lt;p&gt;데이터와 함께 두 개의 벤치마크 코드가 주어졌다.
+각각 시그널 기반의 방법과 모델 기반의 방법인데 접근 방법이 비슷해 보이지만 실제로는 꽤 다른 접근 방법이다.
+양쪽 다 하늘을 적당한 크기의 격자로 나누고 암흑 물질이 한 격자의 중심에 위치해 있다고 가정한다.
+시그널 기반의 방식은 이제 위의 가정하에 해당 암흑 물질이 모든 은하에 미치고 있는 시그널이 얼마나 되는지 계산하여 그 합이 가장 큰 격자를 선택하는 방법이다.
+모델 기반의 방식은 암흑 물질이 각 은하에 가하는 힘의 크기가 1/r로 줄어들 것이라는 모델을 가정하고 해당 모델이 얼마나 잘 들어맞는지를 계산하여 가장 그럴싸한 격자를 선택하는 식으로 구현되어 있었다.&lt;/p&gt;
+&lt;p&gt;데이터 및 벤치마크와 관련된 자세한 내용은 대회 공식 페이지인 &lt;a href="http://www.kaggle.com/c/DarkWorlds"&gt;Observing Dark Worlds&lt;/a&gt; 및
+&lt;a href="http://blog.kaggle.com/2012/10/12/observing-dark-worlds-a-beginners-guide-to-dark-matter-how-to-find-it/"&gt;Kaggle tutorial 블로그&lt;/a&gt;
+에 가면 얻을 수 있다.&lt;/p&gt;
+&lt;h2&gt;Approach&lt;/h2&gt;
+&lt;p&gt;내가 접근한 방식을 설명하기 전에 몇 가지 이야기를 꺼내보자.
+일단 나는 고득점을 하지는 못했다.
+그리고 내가 작업했던 많은 부분을 실제로 제출하지도 못한 채로 대회를 마감해야 했다.
+그렇기에 내가 서술하는 기법들이 얼마나 좋은지는 실제로 판단해보지는 못하였다.
+이런 첨언을 미리 해두고 내가 어떤 식으로 문제에 접근하였는지 설명해보자.&lt;/p&gt;
+&lt;h3&gt;Visualization&lt;/h3&gt;
+&lt;p&gt;어떠한 문제든 다루는 데이터가 어느정도 복잡하다면 통계를 내고 시각화를 통해 직관을 키우는 것이 중요하다.
+그래서 시각화를 위한 노력을 어느정도 하였다.&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;img alt="Signal-based on sky 1" src="./static/images/signal_001.png" /&gt;
+&lt;img alt="Signal-based on sky 298" src="./static/images/signal_298.png" /&gt;
+&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;위의 그림은 시그널 기반의 벤치마크 코드에 약간 수정을 가한 코드로 얻어낸 답을 시각화한 것이다.
+히트맵을 통해 각 위치가 얼마나 그럴싸한지 나타내도록 하였다.&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;img alt="Model-based on sky 31" src="./static/images/likelihood_031.png" /&gt;
+&lt;img alt="Model-based on sky 278" src="./static/images/likelihood_278.png" /&gt;
+&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;비슷한 방식으로 기존의 모델 기반의 벤치마크 코드에 약간의 수정을 가미한 코드로 얻어낸 결과이다.&lt;/p&gt;
+&lt;p&gt;시각화를 통해서 많은 것을 쉽게 얻을 수가 있다.
+시각화는 내가 만들어낸 기법이 얼마나 말이 되는 결과를 내고 있는지를 직관적으로 판단할 수 있는 좋은 기법이며 예상치 못했던 사실을 발견할 수 있는 매체이기도 하다.
+위의 그림을 보면 모든 데이터의 가장 확률이 높은 곳 근처에 1이라는 숫자가 쓰여있는 것을 알 수 있다.
+이는 실제 암흑 물질의 위치를 찍은 것인데, 암흑 물질 하나의 위치만 판별하도록 만들어진 코드가 여러 암흑 물질이 있는 경우에도 하나의 암흑 물질의 위치를 아주 잘 찾아낸 다는 것을 알 수 있었다.
+달리 말하자면 암흑 물질은 질량의 차이가 있고 모든 데이터에는 다른 암흑 물질보다 압도적으로 질량이 큰 암흑 물질 하나가 언제나 존재하는 것을 이를 통해 쉽게 알 수 있었다.&lt;/p&gt;
+&lt;h3&gt;Other Approaches&lt;/h3&gt;
+&lt;p&gt;다른 접근 방법으로는 물리학적인 모델을 찾아보려고 하였으나 관련 논문들의 내용을 도무지 이해할 수가 없어서 포기하게 되었다.
+또한 기본 벤치마크 코드를 조금씩 수정해보고 "느낌"을 얻어보려고 노력하였다.&lt;/p&gt;
+&lt;h3&gt;Data Mining&lt;/h3&gt;
+&lt;p&gt;누군가 포럼에 문제를 순수하게 데이터 마이닝의 관점에서 보고 모델 등과 무관한 접근 방법을 취하는 이야기를 쓰고 관련된 피쳐를 조금 공개하였다.
+이를 살펴보고 적용해보았는데 그럭저럭 괜찮은 결과를 얻을 수 있었지만 더 확장할 수는 없었다.
+참고로 관련 글을 포럼에 적었던 사람은 최종적으로 대회 3위를 차지하게 되었다.&lt;/p&gt;
+&lt;h3&gt;Evolutionary Algorithms&lt;/h3&gt;
+&lt;p&gt;모델을 잘 만들어서 이를 활용하는 방법을 생각하게 되었는데 우선은 두 개의 헤일로가 존재하는 경우의 문제만 시도하였다.
+첫 번째 암흑 물질의 위치는 쉽게 알 수 있으므로 이를 가지고 두 번째 헤일로의 위치를 찾는 방법을 고민해보았다.&lt;/p&gt;
+&lt;p&gt;첫 번째 암흑 물질의 위치를 알고 있을 때, 이 헤일로가 모든 은하에 가하는 접선 방향의 힘을 각각 은하로부터 제외한 값이 최대한 정규 분포에 가깝게 하는 모델을 찾고자하였다.
+모델 자체는 거리에 반비례, 거리의 제곱에 반비례, 거리의 0.5승에 반비례, 거리의 0.75승에 반비례하는 항들의 합으로 주어지게 하였는데, 각 항은 질량 요소를 갖는 것으로 하였다.
+나중에 돌아보니 이는 큰 의미없이 문제만 어렵게 모델링 한 꼴이 되었지만 당시에는 더 나은 접근 방법을 딱히 떠올리지 못하였다.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;norm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;e1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;e1_pred&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="n"&gt;fitness&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;위와 같은 적합도 식을 만들고 이를 Pearson/Spearman correlation coefficient 등과 함께 사용하여 조금씩 변형을 가하기는 하였으나 기본적인 형태는 그대로 유지하였다.&lt;/p&gt;
+&lt;p&gt;이렇게 찾아야하는 모델 패러미터와 적합도 식을 만들고 particle swarm optimization으로 최적 모델 패러미터를 찾도록 하였다.&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;img alt="POS fitting based on signal on sky 103" src="./static/images/normalfit_pearson_103.png" /&gt;
+&lt;img alt="POS fitting based on signal on sky 113" src="./static/images/normalfit_pearson_113.png" /&gt;
+&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;위의 그림은 두 번째 헤일로의 위치를 예측하도록 한 모델의 결과를 나타낸 것이다.
+실제 두 번째 헤일로는 초록색 별로 표시되었고 모델이 예측한 위치는 하얀색 별로 표시하였다.
+물론 실제로는 이렇게까지 결과가 훌륭하지 않은 경우들도 여럿 있었다.&lt;/p&gt;
+&lt;p&gt;스스로 적용해본 기법은 여기까지가 끝이다.
+실제로 대회에 제출한 결과는 벤치마크 코드를 조금 수정해본 것이 다였고, POS 등을 적용한 방법 등의 결과를 제출해보지 못하였다.&lt;/p&gt;
+&lt;h2&gt;Discussion&lt;/h2&gt;
+&lt;p&gt;대회 자체는 나에게 꽤 큰 자극이 되었다.
+일차적으로 다른 사람들과 겨룬다는 것 자체가 큰 자극이 된다.
+그 밖에도 평소에 연구를 하는 동안은 잘 활용하지 않는 도구들을 꺼내어 사용하게 되었는데 그점도 매우 좋았다.&lt;/p&gt;
+&lt;p&gt;한가지 느낀 점은 망치를 들고 있으면 모든 것이 못으로 보이기 십상인데 이를 잘 극복해야 할 것이라는 점이다.
+내가 아무래도 늘상 진화 연산 기법들을 접하다보니 모든 문제가 단순히 최적화 문제로만 보이고 그렇게 접근하게 되기 쉬웠다.
+이는 내가 앞으로 극복하고 포용해야하는 문제가 될 것이다.&lt;/p&gt;
+&lt;p&gt;그리고 마지막으로 대회 1,2위 및 3위가 모두 통계적인 접근 방법을 취했다는 점이 나로하여금 계속해서 기계학습/데이터 마이닝을 공부하게 하는 자극이 되었다.
+1,2 위는 조금은 뻔한 베이지언 시각에서 문제에 접근하였고, 3위는 놀랍게도 리니어 모델만 사용한 것으로 보인다.
+1,2 위는 코드 및 관련 정보를 공개하였으나 3위는 안타깝게도 공개한 것을 찾을 수 없었다.
+어찌되었든 이들의 접근 방법을 보면서 느낀 바도 있고, 여러모로 얻은 것이 많은 대회였다.
+다음 글에서는 1,2위가 사용한 베이지언 시각의 접근 방법에 대해 소개를 하고자 한다.&lt;/p&gt;</summary><category term="kaggle"></category><category term="dark world"></category></entry></feed>

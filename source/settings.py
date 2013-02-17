@@ -33,8 +33,13 @@ DEFAULT_CATEGORY = 'Blog'
 
 # I like to have ``Archives`` in the main menu.
 MENUITEMS = (
-    ('Archives', '{0}/archives.html'.format(SITEURL)),
+    ('Archives', '/archives.html'),
 )
+
+SOCIAL = (
+    ('shurain_', 'http://twitter.com/shurain_'),
+)
+FEED_ATOM = 'feeds/all.atom.xml'
 
 
 WITH_PAGINATION = True
