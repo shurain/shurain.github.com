@@ -39,7 +39,10 @@ MENUITEMS = (
 SOCIAL = (
     ('shurain_', 'http://twitter.com/shurain_'),
 )
-FEED_ATOM = 'feeds/all.atom.xml'
+
+#FEED_ATOM = 'shurain'
+FEED_DOMAIN = 'http://feeds/feedburner.com'
+FEED_ALL_ATOM = 'shurain'
 
 
 WITH_PAGINATION = True
