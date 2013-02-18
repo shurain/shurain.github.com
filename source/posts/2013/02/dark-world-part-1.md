@@ -14,14 +14,14 @@ Tags: kaggle, dark world
 자체적으로 빛을 내뿜거나 흡수하지는 않지만 질량을 갖기 때문에 그 중력에 의한 영향으로 주변의 빛에 영향을 줄 수가 있다.
 
 <center>
-![Dark matter halo](./static/images/arc.png)
+![Dark matter halo](/static/images/arc.png)
 </center>
 
 위의 이미지에서는 암흑 물질의 영향에 의해 은하가 내뿜는 빛이 호(arc)를 그리는 것을 볼 수 있다.
 이런 효과에 의해 암흑 물질을 직접 관측할 수는 없지만 그 위치를 짐작하는 것이 가능하다.
 
 <center>
-![Effect of dark matter halo](./static/images/reorderdarkmatter.png)
+![Effect of dark matter halo](/static/images/reorderdarkmatter.png)
 
 Credit: Observing Dark Worlds Kaggle Competition
 </center>
@@ -60,16 +60,16 @@ Credit: Observing Dark Worlds Kaggle Competition
 그래서 시각화를 위한 노력을 어느정도 하였다.
 
 <center>
-![Signal-based on sky 1](./static/images/signal_001.png)
-![Signal-based on sky 298](./static/images/signal_298.png)
+![Signal-based on sky 1](/static/images/signal_001.png)
+![Signal-based on sky 298](/static/images/signal_298.png)
 </center>
 
 위의 그림은 시그널 기반의 벤치마크 코드에 약간 수정을 가한 코드로 얻어낸 답을 시각화한 것이다.
 히트맵을 통해 각 위치가 얼마나 그럴싸한지 나타내도록 하였다.
 
 <center>
-![Model-based on sky 31](./static/images/likelihood_031.png)
-![Model-based on sky 278](./static/images/likelihood_278.png)
+![Model-based on sky 31](/static/images/likelihood_031.png)
+![Model-based on sky 278](/static/images/likelihood_278.png)
 </center>
 
 비슷한 방식으로 기존의 모델 기반의 벤치마크 코드에 약간의 수정을 가미한 코드로 얻어낸 결과이다.
@@ -107,8 +107,8 @@ Credit: Observing Dark Worlds Kaggle Competition
 이렇게 찾아야하는 모델 패러미터와 적합도 식을 만들고 particle swarm optimization으로 최적 모델 패러미터를 찾도록 하였다.
 
 <center>
-![POS fitting based on signal on sky 103](./static/images/normalfit_pearson_103.png)
-![POS fitting based on signal on sky 113](./static/images/normalfit_pearson_113.png)
+![POS fitting based on signal on sky 103](/static/images/normalfit_pearson_103.png)
+![POS fitting based on signal on sky 113](/static/images/normalfit_pearson_113.png)
 </center>
 
 위의 그림은 두 번째 헤일로의 위치를 예측하도록 한 모델의 결과를 나타낸 것이다.
