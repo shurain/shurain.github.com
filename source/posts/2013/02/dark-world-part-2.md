@@ -10,6 +10,11 @@ Tags: kaggle, dark world
 [지난 글](/2013/02/darkworld1.html)에 이어 [Observing Dark Worlds](http://www.kaggle.com/c/DarkWorlds) 대회에 대한 이야기를 계속하겠다.
 이번에는 1, 2위가 사용한 방법의 큰 그림을 그리면서 가능하면 자세하게 설명을 하고자 한다.
 
+본인들이 직접 자신들의 방법을 설명한 글은 다음의 링크에서 볼 수 있다.
+
+* [Observing Dark Worlds (1위)](http://timsalimans.com/observing-dark-worlds/)
+* [A Bayesian approach to Observing Dark Worlds (2위)](http://homepages.inf.ed.ac.uk/imurray2/pub/12kaggle_dark/)
+
 ## Decision Theory
 
 1, 2위의 전략에 대한 설명에 앞서 decision theory에 대한 이야기를 간단하게 하도록 하겠다.
