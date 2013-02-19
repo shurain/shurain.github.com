@@ -150,7 +150,7 @@ MCMC 자체가 왜 동작하는지 이해하는 것은 꽤 많은 설명이 필�
            Sample u from uniform(0, 1)
            if u < log L(x) - log L(x[i]):
                x[i+1] = x
-            else:
+           else:
                 x[i+1] = x[i]
     Output x[1], ..., x[n]
 
