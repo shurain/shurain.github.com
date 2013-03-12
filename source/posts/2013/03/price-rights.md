@@ -21,11 +21,15 @@ TV 쇼의 마지막 대결 The Showcase를 Bayesian 방식으로 풀어보는 �
 
 글의 내용은 오픈 소스 책인
 [Probabilistic Programming and Bayesian Methods for Hackers in Python](https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers)의
-내용을 따와서 많이 수정하여 만들었다고 한다.
-아직 책의 내용을 살펴볼 기회는 없었지만 기초적인 Bayesian 기법에 대해 실제로 사용해보는 것을 위주로[<span id="ref1">[1]</span>](#footnote1)
+내용을 따와서 많이 수정하여 만들었다고 한다.[<span id="ref1">[1]</span>](#footnote1)
+아직 책의 내용을 살펴볼 기회는 없었지만 기초적인 Bayesian 기법에 대해 실제로 사용해보는 것을 위주로[<span id="ref2">[2]</span>](#footnote2)
 쓰여 있다고 하니 이런 내용에 관심 있는 사람들은 한 번 보면 좋을 것이다.
 
 
 <span id="footnote1">
-[[1]](#ref1): 사람들이 질려 할만한 수학은 가능하면 2순위로 미루고
+[[1]](#ref1): 책 저자가 블로그 글쓴이
+</span>
+
+<span id="footnote2">
+[[2]](#ref2): 사람들이 질려 할만한 수학은 가능하면 2순위로 미루고
 </span>

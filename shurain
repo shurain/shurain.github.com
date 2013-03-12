@@ -13,11 +13,14 @@ TV 쇼의 마지막 대결 The Showcase를 Bayesian 방식으로 풀어보는 �
 같은 기법이 다른 문제에 적용된 사례이니 지난 글의 내용이 잘 이해가 되지 않았던 분들은 한 번 읽어보시면 도움이 될 것이다.&lt;/p&gt;
 &lt;p&gt;글의 내용은 오픈 소스 책인
 &lt;a href="https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers"&gt;Probabilistic Programming and Bayesian Methods for Hackers in Python&lt;/a&gt;의
-내용을 따와서 많이 수정하여 만들었다고 한다.
-아직 책의 내용을 살펴볼 기회는 없었지만 기초적인 Bayesian 기법에 대해 실제로 사용해보는 것을 위주로&lt;a href="#footnote1"&gt;&lt;span id="ref1"&gt;[1]&lt;/span&gt;&lt;/a&gt;
+내용을 따와서 많이 수정하여 만들었다고 한다.&lt;a href="#footnote1"&gt;&lt;span id="ref1"&gt;[1]&lt;/span&gt;&lt;/a&gt;
+아직 책의 내용을 살펴볼 기회는 없었지만 기초적인 Bayesian 기법에 대해 실제로 사용해보는 것을 위주로&lt;a href="#footnote2"&gt;&lt;span id="ref2"&gt;[2]&lt;/span&gt;&lt;/a&gt;
 쓰여 있다고 하니 이런 내용에 관심 있는 사람들은 한 번 보면 좋을 것이다.&lt;/p&gt;
 &lt;p&gt;&lt;span id="footnote1"&gt;
-&lt;a href="#ref1"&gt;[1]&lt;/a&gt;: 사람들이 질려 할만한 수학은 가능하면 2순위로 미루고
+&lt;a href="#ref1"&gt;[1]&lt;/a&gt;: 책 저자가 블로그 글쓴이
+&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span id="footnote2"&gt;
+&lt;a href="#ref2"&gt;[2]&lt;/a&gt;: 사람들이 질려 할만한 수학은 가능하면 2순위로 미루고
 &lt;/span&gt;&lt;/p&gt;</summary></entry><entry><title>Dark World Part II</title><link href="http://blog.shurain.net/2013/02/darkworld2.html" rel="alternate"></link><updated>2013-02-20T00:00:00+00:00</updated><author><name>Sungjoo Ha</name></author><id>tag:blog.shurain.net,2013-02-20:2013/02/darkworld2.html</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;&lt;a href="/2013/02/darkworld1.html"&gt;지난 글&lt;/a&gt;에 이어 &lt;a href="http://www.kaggle.com/c/DarkWorlds"&gt;Observing Dark Worlds&lt;/a&gt; 대회에 대한 이야기를 계속하겠다.
 이번에는 1, 2위가 사용한 방법의 큰 그림을 그리면서 가능하면 자세하게 설명을 하고자 한다.&lt;/p&gt;
