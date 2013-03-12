@@ -1,6 +1,6 @@
 Date: 2013-03-12
 Title: Bayesian Approach to the Price is Right's Showdown
-Slug: price-irights
+Slug: price-rights
 Category: Blog
 
 
