@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>sh.</title><link href="http://blog.shurain.net/" rel="alternate"></link><link href="http://feeds.feedburner.com/feeds/all-en.atom.xml" rel="self"></link><id>http://blog.shurain.net/</id><updated>2013-02-20T00:00:00+00:00</updated><entry><title>Dark World Part II</title><link href="http://blog.shurain.net/2013/02/darkworld2.html" rel="alternate"></link><updated>2013-02-20T00:00:00+00:00</updated><author><name>Sungjoo Ha</name></author><id>tag:blog.shurain.net,2013-02-20:2013/02/darkworld2.html</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>sh.</title><link href="http://blog.shurain.net/" rel="alternate"></link><link href="http://feeds.feedburner.com/feeds/all-en.atom.xml" rel="self"></link><id>http://blog.shurain.net/</id><updated>2013-03-12T00:00:00+00:00</updated><entry><title>Bayesian Approach to the Price is Right's Showdown</title><link href="http://blog.shurain.net/2013/03/price-irights.html" rel="alternate"></link><updated>2013-03-12T00:00:00+00:00</updated><author><name>Sungjoo Ha</name></author><id>tag:blog.shurain.net,2013-03-12:2013/03/price-irights.html</id><summary type="html">&lt;p&gt;&lt;a href="/2013/02/darkworld2.html"&gt;지난 글&lt;/a&gt;에서 Observing Dark Worlds 대회에 1, 2위가
+사용한 방법을 설명하면서 Bayesian 방식으로 문제에 접근하는 이야기를 했었다.
+이런 Bayesian 방식을 쉽게 잘 설명한 글로
+&lt;a href="http://camdp.com/blogs/how-solve-price-rights-showdown"&gt;How to solve the Price is Right's Showdown&lt;/a&gt;이라는
+블로그 글이 있다.&lt;/p&gt;
+&lt;p&gt;이 글은 &lt;a href="http://en.wikipedia.org/wiki/The_Price_Is_Right"&gt;The Price Is Right&lt;/a&gt;이라는
+TV 쇼의 마지막 대결 The Showcase를 Bayesian 방식으로 풀어보는 시도에 대한 이야기하고 있다.
+문제에 대한 자세한 정보는 원문을 참고하길 바란다.&lt;/p&gt;
+&lt;p&gt;전체적으로는 prior belief를 설정하고 likelihood 계산을 위한 모델 설정 뒤에
+&lt;a href="https://github.com/pymc-devs/pymc"&gt;PyMC&lt;/a&gt; 라이브러리를 사용하여 MCMC 계산을 한다.
+그리고 loss function을 정의하여 그에 따른 expected loss optimization을 수행하는 전통적인 구조를 잘 보여준다.
+같은 기법이 다른 문제에 적용된 사례이니 지난 글의 내용이 잘 이해가 되지 않았던 분들은 한 번 읽어보시면 도움이 될 것이다.&lt;/p&gt;
+&lt;p&gt;글의 내용은 오픈 소스 책인
+&lt;a href="https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers"&gt;Probabilistic Programming and Bayesian Methods for Hackers in Python&lt;/a&gt;의
+내용을 따와서 많이 수정하여 만들었다고 한다.
+아직 책의 내용을 살펴볼 기회는 없었지만 기초적인 Bayesian 기법에 대해 실제로 사용해보는 것을 위주로&lt;a href="#footnote1"&gt;&lt;span id="ref1"&gt;[1]&lt;/span&gt;&lt;/a&gt;
+쓰여 있다고 하니 이런 내용에 관심 있는 사람들은 한 번 보면 좋을 것이다.&lt;/p&gt;
+&lt;p&gt;&lt;span id="footnote1"&gt;
+&lt;a href="#ref1"&gt;[1]&lt;/a&gt;: 사람들이 질려 할만한 수학은 가능하면 2순위로 미루고
+&lt;/span&gt;&lt;/p&gt;</summary></entry><entry><title>Dark World Part II</title><link href="http://blog.shurain.net/2013/02/darkworld2.html" rel="alternate"></link><updated>2013-02-20T00:00:00+00:00</updated><author><name>Sungjoo Ha</name></author><id>tag:blog.shurain.net,2013-02-20:2013/02/darkworld2.html</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;&lt;a href="/2013/02/darkworld1.html"&gt;지난 글&lt;/a&gt;에 이어 &lt;a href="http://www.kaggle.com/c/DarkWorlds"&gt;Observing Dark Worlds&lt;/a&gt; 대회에 대한 이야기를 계속하겠다.
 이번에는 1, 2위가 사용한 방법의 큰 그림을 그리면서 가능하면 자세하게 설명을 하고자 한다.&lt;/p&gt;
 &lt;p&gt;본인들이 직접 자신들의 방법을 설명한 글은 다음의 링크에서 볼 수 있다.&lt;/p&gt;
