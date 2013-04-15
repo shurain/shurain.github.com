@@ -1,4 +1,4 @@
-Date: 2013-03-12
+Date: 2013-04-16
 Title: Conditional Random Field
 Slug: crf
 Category: Blog
