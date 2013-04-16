@@ -49,7 +49,7 @@ FEED_ALL_ATOM = 'shurain'
 
 
 WITH_PAGINATION = True
-DEFAULT_PAGINATION = 10
+DEFAULT_PAGINATION = 2
 REVERSE_ARCHIVE_ORDER = True
 
 # Uncomment what ever you want to use
