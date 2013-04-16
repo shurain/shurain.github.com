@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-                <title>sh. tags</title>
+                <title>sh. <small>text segmentation</small></title>
         <!-- Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=The+Girl+Next+Door' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Marcellus' rel='stylesheet' type='text/css'>
         
         <!-- CSS -->
-        <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
-        <link rel="stylesheet" href="./theme/css/pygments.css" type="text/css" />
-        <link rel="stylesheet" href="./theme/css/font-awesome.css" type="text/css" />
+        <link rel="stylesheet" href="../theme/css/main.css" type="text/css" />
+        <link rel="stylesheet" href="../theme/css/pygments.css" type="text/css" />
+        <link rel="stylesheet" href="../theme/css/font-awesome.css" type="text/css" />
         <meta charset="utf-8" />
       
         
         <!-- Javascript-->
-        <script src="./theme/js/invisible-menu-scroll.js"></script>
+        <script src="../theme/js/invisible-menu-scroll.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
         <script type="text/javascript"> 
           $(function() {
@@ -27,31 +27,58 @@
 <body id="index" class="home">
          <div class="navigation">
         <ol class="nav">
-          <li><a href=".">Blog</a> </li>
-          <li><a href="./archives.html">Archive</a></li>
-          <li class="current"><a href="./tags.html">Tags</a> </li>
-          <li><a href="./">RSS</a> </li>
+          <li><a href="..">Blog</a> </li>
+          <li><a href="../archives.html">Archive</a></li>
+          <li class="current"><a href="../tags.html">Tags</a> </li>
+          <li><a href="../">RSS</a> </li>
         </ol>
       </div>
-            <header id="banner" class="body">
-                <div class="banner"><a href=".">sh. <strong></strong></a></div>
+        <header id="banner" class="body">
+                <div class="banner"><a href="..">sh. <strong></strong></a></div>
         </header><!-- /#banner -->
         <nav id="menu"><ul>
                     <li><a href="/archives.html">Archives</a></li>
-                                      <li><a href="./2013/04/pages/about.html">About</a></li>
+                                      <li><a href="../2013/04/pages/about.html">About</a></li>
                           </ul></nav><!-- /#menu -->
         <div class="box">
-            <h2>Tags:</h2>
-<ul>
-    <li><a href="./tag/text-segmentation.html">text segmentation</a></li>
-    <li><a href="./tag/dark-world.html">dark world</a></li>
-    <li><a href="./tag/crf.html">crf</a></li>
-    <li><a href="./tag/kaggle.html">kaggle</a></li>
-</ul>
+                    
+<section id="content">
+<div class="posts">
+    <ol id="post-list">
+            
+        <li>
+            <article class="archive">
+                <header> 
+                    <h1 class="archive-entry-title">
+                        <a href="../2013/04/crf.html" rel="bookmark" title="Permalink to Conditional Random Field">Conditional Random Field</a>
+                    </h1> 
+                </header>
+                <footer class="post-info">
+                    <abbr>
+                      화 16 4월 2013 
+                                               By <a class="url fn" href="../author/sungjoo-ha.html">Sungjoo Ha</a>
+                        
+                    </abbr>
+                    <div class="entry-summary"> <h2>Introduction</h2>
+<p>Conditional random field는 (CRF) 레이블의 인접성에 대한 정보를 바탕으로 레이블을 추측하는 기계학습 기법이다.
+CRF를 활용하여 여러 가지 재미있는 것들을 할 수 있는데, 이를 활용하는 방법에 대해 이야기하겠다. <a href="#footnote1"><span id="ref1">[1]</span></a></p>
+<p>하지만 그래도 CRF가 어떤 식으로 동작하는 지 대충은 알아야 하니 대략적인 설명을 해보도록 하자.
+보통 품사 태깅을 (Part-of-speech tagging) 예로 많이 ...</p>
+                    <a href="../2013/04/crf.html">read more</a></div>
+                </footer><!-- /.post-info -->
+                <!-- /.entry-content -->
+            </article>
+        </li>
+        </ol><!-- /#posts-list -->
+</div>
+<p class="paginator">
+        Page 1 / 1
+    </p>
+</section><!-- /#content -->
             <hr/>
             <footer id="contentinfo" class="footer">
                 <div>
-                    <a href=".">Sungjoo Ha</a> (2012)
+                    <a href="..">Sungjoo Ha</a> (2012)
                 </div>
                 <div>
                     This work is licensed under <a rel="license" href="http://opensource.org/licenses/bsd-3-clause">3 clause BSD</a>. Source code available on <a rel="source code" href="https://github.com/slok/blog">Github</a>

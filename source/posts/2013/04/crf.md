@@ -2,6 +2,7 @@ Date: 2013-04-16
 Title: Conditional Random Field
 Slug: crf
 Category: Blog
+Tags: crf, text segmentation
 
 
 ## Introduction
