@@ -1,70 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Conditional Random Field</title>
-        <meta charset="utf-8" />
+                <title>sh.</title>
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=The+Girl+Next+Door' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Marcellus' rel='stylesheet' type='text/css'>
+        
+        <!-- CSS -->
         <link rel="stylesheet" href="../../theme/css/main.css" type="text/css" />
-                <link href="http://feeds.feedburner.com/shurain" type="application/atom+xml" rel="alternate" title="sh. Atom Feed" />
-                
-        <!--[if IE]>
-                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
-        <!--[if lte IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="../../css/ie.css"/>
-                <script src="../../js/IE8.js" type="text/javascript"></script><![endif]-->
-
-        <!--[if lt IE 7]>
-                <link rel="stylesheet" type="text/css" media="all" href="../../css/ie6.css"/><![endif]-->
-
-        <script type="text/javascript">
-
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-20801130-1']);
-    _gaq.push(['_trackPageview']);
-    _gaq.push(['_gat._anonymizeIp']);
-
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-
-</script>
+        <link rel="stylesheet" href="../../theme/css/pygments.css" type="text/css" />
+        <link rel="stylesheet" href="../../theme/css/font-awesome.css" type="text/css" />
+        <meta charset="utf-8" />
+      
+        
+        <!-- Javascript-->
+        <script src="../../theme/js/invisible-menu-scroll.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+        <script type="text/javascript"> 
+          $(function() {
+            invisibleMenu();
+          });
+        </script> 
         </head>
 
 <body id="index" class="home">
-<a href="http://github.com/shurain/shurain.github.com">
-<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
-</a>
+         <div class="navigation">
+        <ol class="nav">
+          <li class="current"><a href="../..">Blog</a> </li>
+          <li><a href="../../archives.html">Archive</a></li>
+          <li><a href="../../tags.html">Tags</a> </li>
+          <li><a href="">RSS</a> </li>
+        </ol>
+      </div>
         <header id="banner" class="body">
-                <h1><a href="../../">sh. </a></h1>
-                <nav><ul>
-                                    <li><a href="/archives.html">Archives</a></li>
-                                                                    <li><a href="../../2013/04/pages/about.html">About</a></li>
-                                                                    <li class="active"><a href="../../category/blog.html">Blog</a></li>
-                                </ul></nav>
+                <div class="banner"><a href="../..">sh. <strong></strong></a></div>
         </header><!-- /#banner -->
-        <section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="../../2013/04/crf.html" rel="bookmark"
-           title="Permalink to Conditional Random Field">Conditional Random Field</a></h1>
-      <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="shurain_">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-    </header>
-
-    <div class="entry-content">
-      <footer class="post-info">
-        <abbr class="published" title="2013-04-16T00:00:00">
-                화 16 4월 2013
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="../../author/sungjoo-ha.html">Sungjoo Ha</a>
-        </address>
-        <p>In <a href="../../category/blog.html">Blog</a>. </p>
-
-</footer><!-- /.post-info -->      <h2>Introduction</h2>
+        <nav id="menu"><ul>
+                    <li><a href="/archives.html">Archives</a></li>
+                                      <li><a href="../../2013/04/pages/about.html">About</a></li>
+                          </ul></nav><!-- /#menu -->
+        <div class="box">
+            <section id="content" class="body">
+  <header class="post">
+    <h1 class="entry-title">
+      Conditional Random Field
+    </h1>
+  </header>
+  <footer class="post-info">
+    <abbr>
+      화 16 4월 2013 
+               By <a class="url fn" href="../../author/sungjoo-ha.html">Sungjoo Ha</a>
+        
+    </abbr>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <h2>Introduction</h2>
 <p>Conditional random field는 (CRF) 레이블의 인접성에 대한 정보를 바탕으로 레이블을 추측하는 기계학습 기법이다.
 CRF를 활용하여 여러 가지 재미있는 것들을 할 수 있는데, 이를 활용하는 방법에 대해 이야기하겠다. <a href="#footnote1"><span id="ref1">[1]</span></a></p>
 <p>하지만 그래도 CRF가 어떤 식으로 동작하는 지 대충은 알아야 하니 대략적인 설명을 해보도록 하자.
@@ -134,49 +125,42 @@ F/0 <br />
 <p><span id="footnote4">
 <a href="#ref3">[3]</a>: 사실 우리말로 된 유용한 말뭉치 집합을 얻는 것은 매우 어렵다. 그런 맥락에서 한국어 위키피디아 문서는 아주 좋은 데이터셋이다.
 </span></p>
-    </div><!-- /.entry-content -->
-        <div class="comments">
-      <h2>Comments !</h2>
-      <div id="disqus_thread"></div>
-      <script type="text/javascript">
-        var disqus_identifier = "2013/04/crf.html";
-        (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://shurain.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-      </script>
-    </div>
-    
-  </article>
-</section>
-        <section id="extras" class="body">
-                                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="http://feeds.feedburner.com/shurain" type="application/atom+xml" rel="alternate">atom feed</a></li>
-                            
-                                                    <li><a href="http://twitter.com/shurain_">shurain_</a></li>
-                                                </ul>
-                </div><!-- /.social -->
-                </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
+  </div><!-- /.entry-content -->
+<div id="disqus_thread"></div>
 <script type="text/javascript">
-    var disqus_shortname = 'shurain';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
+    var disqus_shortname = 'shurain'; 
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 </script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+            <hr/>
+            <footer id="contentinfo" class="footer">
+                <div>
+                    <a href="../..">Sungjoo Ha</a> (2012)
+                </div>
+                <div>
+                    This work is licensed under <a rel="license" href="http://opensource.org/licenses/bsd-3-clause">3 clause BSD</a>. Source code available on <a rel="source code" href="https://github.com/slok/blog">Github</a>
+                </div>
+                <div>
+                    powered by <a href="http://getpelican.com/">Pelican</a>
+                    and <a href="http://python.org">Python</a>. 
+                    <a href="http://github.com/slok/iris">Theme</a> by <a href="http://xlarrakoetxea.org">Xabier Larrakoetxea</a> based on <a href="http://flask.pocoo.org/">Flask</a> theme
+                </div>
+                <div>
+                    Social icons (font awesome) by <a href="http://fortawesome.github.com/Font-Awesome/"> fort awesome<a>.
+                    <a href="http://www.google.com/webfonts/specimen/The+Girl+Next+Door">Title</a>, <a href="http://www.google.com/webfonts/specimen/Marcellus">headers</a> and <a href="http://www.google.com/webfonts/specimen/Inconsolata">source code</a> fonts by google fonts
+                </div>
+                <div class="social">
+                                            <a href="http://twitter.com/shurain_"><i class="icon-shurain_"></i>  </a>
+                                                        </div>
+            </footer><!-- /#contentinfo -->
+        </div>
+        <!--Add statistycs-->
+        
 </body>
 </html>

@@ -7,7 +7,8 @@ TIMEZONE = 'UTC'
 
 # This can also be the absolute path to a theme that you downloaded
 # i.e. './themes/anothertheme/'
-THEME = 'notmyidea'
+#THEME = 'notmyidea'
+THEME = '../iris'
 
 # The folder ``images`` should be copied into the folder ``static`` when
 # generating the output.
