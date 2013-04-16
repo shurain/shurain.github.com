@@ -43,7 +43,6 @@ SOCIAL = (
 
 #FEED_ATOM = 'shurain'
 FEED_DOMAIN = 'http://feeds.feedburner.com'
-FEED_RSS = 'http://feeds.feedburner.com'
 FEED_ALL_ATOM = 'shurain'
 
 
