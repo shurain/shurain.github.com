@@ -38,7 +38,9 @@ MENUITEMS = (
 )
 
 SOCIAL = (
-    ('shurain_', 'http://twitter.com/shurain_'),
+    ('facebook', 'https://www.facebook.com/shurain.net'),
+    ('twitter', 'http://twitter.com/shurain_'),
+    ('github', 'https://github.com/shurain/'),
 )
 
 #FEED_ATOM = 'shurain'
@@ -52,6 +54,7 @@ REVERSE_ARCHIVE_ORDER = True
 
 # Uncomment what ever you want to use
 GOOGLE_ANALYTICS = 'UA-20801130-1'
+GOOGLE_ANALYTICS_CODE = 'UA-20801130-1'
 DISQUS_SITENAME = 'shurain'
 GITHUB_URL = 'http://github.com/shurain/shurain.github.com'
 TWITTER_USERNAME = 'shurain_'
