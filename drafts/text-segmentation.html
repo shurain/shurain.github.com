@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+                <title>sh.</title>
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href="../theme/css/main.css" type="text/css" />
+        <link rel="stylesheet" href="../theme/css/pygments.css" type="text/css" />
+        <link rel="stylesheet" href="../theme/css/font-awesome.css" type="text/css" />
+        <meta charset="utf-8" />
+      
+        
+        <!-- Javascript-->
+        <script src="../theme/js/invisible-menu-scroll.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+        <script type="text/javascript"> 
+          $(function() {
+            invisibleMenu();
+          });
+        </script> 
+        </head>
+
+<body id="index" class="home">
+         <div class="navigation">
+        <ol class="nav">
+          <li class="current"><a href="..">Blog</a> </li>
+          <li><a href="../archives.html">Archive</a></li>
+          <li><a href="../tags.html">Tags</a> </li>
+          <li><a href="http://feeds.feedburner.com/shurain">RSS</a> </li>
+        </ol>
+      </div>
+        <header id="banner" class="body">
+                <div class="banner"><a href="..">sh. <strong></strong></a></div>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+                    <li><a href="/archives.html">Archives</a></li>
+                                      <li><a href="../2013/04/pages/about.html">About</a></li>
+                          </ul></nav><!-- /#menu -->
+        <div class="box">
+            <section id="content" class="body">
+  <header class="post">
+    <h1 class="entry-title">
+      Text Segmentation
+    </h1>
+  </header>
+  <footer class="post-info">
+    <abbr>
+      월 22 4월 2013 
+               By <a class="url fn" href="../author/sungjoo-ha.html">Sungjoo Ha</a>
+        
+    </abbr>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <h2>Introduction</h2>
+<p>모든 기계학습 기법이 그렇듯 CRF도 주어진 데이터에 따라 체감할 수 있는 성능 차이가 크다.
+기계학습은 데이터를 바탕으로 어떤 모델을 만들어내는 방법이라고 생각할 수 있는데, 주어진 데이터가 우리가 원하는 모델을 만들어 내는데 필요한 정보를 갖고 있지 않으면 이는 불가능하다.</p>
+<p><a href="http://homes.cs.washington.edu/~pedrod/">Pedro Domingos</a>는 기계학습을 정원을 가꾸는 것에 비유했다. <a href="#footnote1"><span id="ref1">[1]</span></a></p>
+<ul>
+<li>Seeds = Algorithms</li>
+<li>Nutrients = Data</li>
+<li>Gradener = You</li>
+<li>Plants = Program</li>
+</ul>
+<p>기계학습의 엄청난 강점은 굉장히 많은 일을 데이터가 대신 해준다는 것이다. 
+기존의 프로그래밍을 생각해보면 프로그래머가 모든 프로그램을 작성해야 했다.
+그러나 기계학습에서는 어떤 특정한 일을 하는 프로그램을 만들기 위해서 기본적인 기계학습 알고리즘에 데이터를 잔뜩 부어넣어서 목표로 하는 프로그램을 만들어낸다.
+이는 마치 정원사가 정원에 씨앗을 심고 약간만 신경을 써주면 거의 대부분의 일을 자연이 해주는 것과 유사하다.
+하지만 이를 잘 생각해보면 결국 데이터가 아주아주 중요하다는 것을 알 수 있다.
+쓰레기 데이터를 넣으면 쓰레기가 나올 수 밖에 없다. <a href="#footnote2"><span id="ref2">[2]</span></a></p>
+<h2>Text Segmentation</h2>
+<p><a href="http://blog.shurain.net/2013/04/crf.html">지난 글</a>에서 CRF를 개략적으로 살펴보고 이를 한국어 띄어쓰기에 적용한 예를 살펴보았다.
+지난 예에서는 한국어 위키백과의 데이터를 사용하여 띄어쓰기를 위한 CRF를 학습하였다. 
+이 모델은 표준어를 띄어 쓰는 것은 꽤 잘한다.
+그러나 구어체 혹은 비속어 및 비문, 오타 등을 마주치게 되면 잘 처리하지 못하는 모습을 보여준다.</p>
+<blockquote>
+<p>아마싯는거먹고시퍼
+아마싯는 거먹고 시퍼</p>
+</blockquote>
+<p>이는 당연한 현상인데, 한국어 위키백과에 구어체, 비속어 비문 등은 거의 없을 것이기 때문이다.
+데이터가 힘든 일을 대신 해줘야 하는데, 데이터가 이를 못하는 상황인 것이다.
+이를 해결하기 위해서 구어체 등을 포함한 데이터를 넣어줄 필요가 있다.</p>
+<p>지난 글에서 각주에 언급했지만 사실 좋은 데이터를 구하는 것은 어려운 일이다.
+대규모 서비스를 운영하는 입장에서는 그런 데이터가 충분히 있겠지만 재미삼아 하는 입장에서는 데이터 획득이 만만한 일이 아니다. 
+지난 번에는 한국어 위키백과 자료를 활용했는데, 이번에는 엔하위키의 데이터를 추가하였다. <a href="#footnote3"><span id="ref3">[3]</span></a> 
+엔하위키는 위키백과에 비해 상대적으로 덜 딱딱하고 구어체에 가까운 문법을 사용하는 것을 볼 수 있으며, 많은 종류의 인터넷 용어도 포함하고 있다.</p>
+<p><span id="footnote1">
+<a href="#ref1">[1]</a>: <a href="https://www.coursera.org/course/machlearning">Machine Learning by Pedro Domingos</a>
+</span></p>
+<p><span id="footnote2">
+<a href="#ref2">[2]</a>: <a href="http://en.wikipedia.org/wiki/Garbage_in,_garbage_out">Garbage in, garbage out</a>
+</span></p>
+<p><span id="footnote3">
+<a href="#ref3">[3]</a>: <a href="http://ko.wikipedia.org/wiki/%EC%97%94%ED%95%98%EC%9C%84%ED%82%A4">엔하위키</a>
+</span></p>
+  </div><!-- /.entry-content -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'shurain'; 
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+            <hr/>
+            <footer id="contentinfo" class="footer">
+                <div>
+                    <a href="..">Sungjoo Ha</a> (2013)
+                </div>
+                <div>
+                    Design licensed under <a rel="license" href="http://opensource.org/licenses/bsd-3-clause">3 clause BSD</a>. Source code available on <a rel="source code" href="https://github.com/slok/blog">Github</a>
+                </div>
+                <div>
+                    powered by <a href="http://getpelican.com/">Pelican</a>
+                    and <a href="http://python.org">Python</a>. 
+                    <a href="http://github.com/slok/iris">Theme</a> by <a href="http://xlarrakoetxea.org">Xabier Larrakoetxea</a> based on <a href="http://flask.pocoo.org/">Flask</a> theme
+                </div>
+                <div>
+                    Social icons (font awesome) by <a href="http://fortawesome.github.com/Font-Awesome/"> fort awesome<a>.
+                    <a href="http://www.google.com/webfonts/specimen/The+Girl+Next+Door">Title</a>, <a href="http://www.google.com/webfonts/specimen/Marcellus">headers</a> and <a href="http://www.google.com/webfonts/specimen/Inconsolata">source code</a> fonts by google fonts
+                </div>
+                <div class="social">
+                                            <a href="https://www.facebook.com/shurain.net"><i class="icon-facebook"></i>  </a>
+                                            <a href="http://twitter.com/shurain_"><i class="icon-twitter"></i>  </a>
+                                            <a href="https://github.com/shurain/"><i class="icon-github"></i>  </a>
+                                                        </div>
+            </footer><!-- /#contentinfo -->
+        </div>
+        <!--Add statistycs-->
+        <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', "UA-20801130-1"]);
+      _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
