@@ -14,7 +14,7 @@ Tags: crf, text segmentation
 
 - Seeds = Algorithms
 - Nutrients = Data
-- Gradener = You
+- Gardener = You
 - Plants = Program
 
 기계학습의 엄청난 강점은 굉장히 많은 일을 데이터가 대신 해준다는 것이다. 
