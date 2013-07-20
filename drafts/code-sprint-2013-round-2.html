@@ -55,11 +55,13 @@
 <h2>Exploratory Data Analysis</h2>
 <p>이런 식의 문제를 접하면 먼저 해야 하는 것이 몇 가지 있다. 가장 중요한 것 중 하나가 데이터를 살펴보는 것이다. 흔히 <a href="http://en.wikipedia.org/wiki/Exploratory_data_analysis">exploratory data analysis</a>라고 하는데, 데이터를 살펴보고 이를 토대로 적절한 가설을 세우거나 앞으로의 진행 방향 등을 결정하기 위해서 반드시 필요한 작업이다.</p>
 <p>전체 데이터를 한 눈에 보는 것은 쉽지 않지만 개별 도로의 정보는 상대적으로 시각화하기 쉽다. 다음의 차트는 1번 도로의 일별 데이터를 시간축으로 자른 차트로, x축은 날짜를 (4월 1일부터 6월 30일까지) y축은 평균 시속을 (km/s) 의미한다. 빨간 선은 일요일을 의미하며 녹색 선은 공휴일이다 (현충일, 석가탄신일).</p>
-<p><center>
-<img alt="1번 도로의 일별 데이터를 시간축으로 자른 차트 (01:15)" src="/static/images/codesprint_015.jpg" /></p>
-<p>01:15의 데이터</p>
-<p><img alt="1번 도로의 일별 데이터를 시간축으로 자른 차트 (19:20)" src="/static/images/codesprint_232.jpg" /></p>
-<p>19:20의 데이터
+<p><img alt="1번 도로의 일별 데이터를 시간축으로 자른 차트 (01:15)" src="/static/images/codesprint_015.jpg" />
+<center>
+01:15의 데이터
+</center>
+<img alt="1번 도로의 일별 데이터를 시간축으로 자른 차트 (19:20)" src="/static/images/codesprint_232.jpg" />
+<center>
+19:20의 데이터
 </center></p>
 <p><a href="/static/images/codesprint_001.gif">전체 데이터 애니메이션 보기</a></p>
 <p>위의 애니메이션을 보면 쉽게 알 수 있는데, 도로의 평균 속도는 매우 빠르다가 (약 100 km/h) 시간이 지나면서 매우 느려졌다가 (약 20 km/h) 다시 빨라지는 양태를 띄는 것을 알 수 있다. 또한 데이터를 가만히 살펴보면 주중과 주말의 양상이 많이 다른 것을 알 수 있다. 반면 주중의 움직임 끼리는 간혹 서로 다른 경우가 있지만 대체로 비슷한 것을 알 수 있다. 이를 토대로 다음과 같은 가설을 세울 수 있다.</p>
