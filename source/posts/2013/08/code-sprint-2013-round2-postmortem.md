@@ -124,3 +124,4 @@ Base model 보다 더 낫거나 최소한 그와 비슷한 결과를 내는 방�
 <span id="footnote2">
 [[2]](#ref2): [Bias/Variance Tradeoff](http://www.cs.cornell.edu/courses/cs578/2005fa/CS578.bagging.boosting.lecture.pdf)를 참고하기 바란다.
 </span>
+
