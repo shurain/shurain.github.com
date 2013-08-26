@@ -1,5 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>sh.</title><link href="http://blog.shurain.net/" rel="alternate"></link><link href="http://feeds.feedburner.com/feeds/all-en.atom.xml" rel="self"></link><id>http://blog.shurain.net/</id><updated>2013-07-20T00:00:00+00:00</updated><entry><title>Code Sprint 2013 Round 2</title><link href="http://blog.shurain.net/2013/07/code-sprint-2013-round-2.html" rel="alternate"></link><updated>2013-07-20T00:00:00+00:00</updated><author><name>Sungjoo Ha</name></author><id>tag:blog.shurain.net,2013-07-20:2013/07/code-sprint-2013-round-2.html</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>sh.</title><link href="http://blog.shurain.net/" rel="alternate"></link><link href="http://feeds.feedburner.com/feeds/all-en.atom.xml" rel="self"></link><id>http://blog.shurain.net/</id><updated>2013-08-27T00:00:00+00:00</updated><entry><title>Code Sprint 2013 Round 2 Post-mortem</title><link href="http://blog.shurain.net/2013/08/code-sprint-2013-round-2-post-mortem.html" rel="alternate"></link><updated>2013-08-27T00:00:00+00:00</updated><author><name>Sungjoo Ha</name></author><id>tag:blog.shurain.net,2013-08-27:2013/08/code-sprint-2013-round-2-post-mortem.html</id><summary type="html">&lt;style&gt;
+.err {
+    color: #000000;
+    border: none;
+}
+&lt;/style&gt;
+
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;&lt;a href="/2013/07/code-sprint-2013-round-2.html"&gt;지난 글&lt;/a&gt;에서 내가 어떤 방법을 사용해서 &lt;a href="http://codesprint.skplanet.com/2013/intro/round_02.htm"&gt;Code Sprint 라운드 2&lt;/a&gt;에서 우승을 할 수 있었는지 설명하였다. 이번엔 지난 글에서 못다 한 이야기와 만약 나에게 주어진 시간이 충분했더라면 어떤 식의 접근을 했을지를 논하는 일종의 post-mortem을 이야기해보자.&lt;/p&gt;
+&lt;h2&gt;Bayesian Story&lt;/h2&gt;
+&lt;p&gt;기존 대회에서는 주어진 데이터를 posterior sample이라고 가정하고 문제에 접근하였다. 하지만 이는 제대로 된 베이지안 방식의 접근이 아니다. 조금 더 세련된 베이지안 접근을 취해보자.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Prior distribution을 만든다.&lt;/li&gt;
+&lt;li&gt;Likelihood 계산을 위한 모델을 만든다.&lt;/li&gt;
+&lt;li&gt;Bayes' theorem을 사용하여 posterior distribution을 계산한다.&lt;/li&gt;
+&lt;li&gt;Posterior distribution에 대한 expected loss를 최소화한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Data Generation Model&lt;/h3&gt;
+&lt;p&gt;우리는 예측에 앞서 각 데이터를 생성하는 분포에 관심이 많다. 이는 만약 데이터를 생성하는 분포를 정확하게 알 수 있다면 우리가 원하는 만큼 데이터를 생성하고 이를 활용하여 예측에 사용할 수 있기 때문이다. 데이터가 어떤 방식으로 생성 되었는지에 대한 직관은 데이터를 살펴보면 얻을 수 있는 경우가 많다.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="1번 도로 하행선의 4월 평균 시속 분포 (08:00)" src="/static/images/codesprint_pm_0800.png" /&gt;&lt;/p&gt;
+&lt;p&gt;위의 차트는 1번 도로 하행선의 08:00의 4월 데이터이다. 살펴보면 대부분의 경우는 시속 20km 정도의 평균 시속을 보이지만 간혹 시속 80km에 가깝게 튀는 데이터들이 있다. 이는 주말에 차가 몰리지 않아서 생기는 현상이라고 결론짓고 넘어갈 수도 있지만 자세히 보면 그런 데이터의 절반은 평일에 일어난 데이터이다.
+이를 토대로 다음과 같은 가설을 세울 수 있다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;하루하루 도로의 시간대별 평균 속도를 생성하는 분포는 두 개 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;즉, 평균적인 데이터를 생성하는 분포와 (1번 모델) 이상한 데이터를 생성하는 분포 (2번 모델) 두 개가 있다는 가정을 하는 것이다.
+이제 데이터 생성 스토리를 만들어보자.&lt;a href="#footnote1"&gt;&lt;span id="ref1"&gt;[1]&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;For&lt;/span&gt; &lt;span class="n"&gt;each&lt;/span&gt; &lt;span class="n"&gt;road&lt;/span&gt;
+&lt;span class="mf"&gt;1.&lt;/span&gt; &lt;span class="n"&gt;Choose&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt; &lt;span class="n"&gt;Uniform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mf"&gt;2.&lt;/span&gt; &lt;span class="n"&gt;Choose&lt;/span&gt; &lt;span class="n"&gt;assignment&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt; &lt;span class="n"&gt;Bernoulli&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mf"&gt;3.&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;each&lt;/span&gt; &lt;span class="n"&gt;timepoint&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Choose&lt;/span&gt; &lt;span class="err"&gt;μ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="err"&gt;μ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt; &lt;span class="n"&gt;Uniform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;120&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Choose&lt;/span&gt; &lt;span class="err"&gt;σ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="err"&gt;σ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;~&lt;/span&gt; &lt;span class="n"&gt;Uniform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="err"&gt;μ&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;μ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;assignment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="err"&gt;μ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="err"&gt;σ&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;σ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;assignment&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="err"&gt;σ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Generate&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt; &lt;span class="n"&gt;Normal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;μ&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="err"&gt;σ&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;간단히 말해서, 임의의 확률로 두 모델 중 하나가 선택이 되고, 그에 맞는 정규 분포로부터 데이터가 생성된다는 이야기이다. 위의 생성 프로세스를 잘 살펴보면 기존의 접근 방법에서 취하던 각 시간별 데이터의 독립성이 사라졌음을 알 수 있다. 각 시간은 assignment에 의해 서로 연관이 되어 있다.&lt;/p&gt;
+&lt;h3&gt;Posterior Distribution and Expected Loss Minimization&lt;/h3&gt;
+&lt;p&gt;Prior distribution과 likelihood 계산을 위한 모델은 위의 데이터 생성 스토리에 모두 나타나 있다. 이제 이를 사용해서 μ(t)와 σ(t)의 posterior 분포를 계산해보는 것이 가능하다. Posterior distribution을 구하는 방법은 여러 가지가 있지만 나는 MCMC 기법을 활용하였다. 앞서 본 4월 데이터를 살펴보자.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Posterior distribution" src="codesprint_pm_musigma.png" /&gt;
+&lt;center&gt;
+μ와 σ의 posterior distribution
+&lt;/center&gt;
+&lt;img alt="Model choice distribution" src="codesprint_pm_p.png" /&gt;
+&lt;center&gt;
+p의 분포
+&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;위의 posterior 분포를 보면 1번 모델은 대체로 20 정도의 μ를 중심으로 하고 있으며 2번 모델은 약 82 가량의 μ를 중심으로 하고 있음을 알 수 있다.
+이는 위의 차트에서 확인할 수 있는 결과와 잘 맞아 떨어진다. 즉, 이를 통해 학습이 어느 정도 그럴싸하게 되었다는 것을 알 수 있다.&lt;/p&gt;
+&lt;p&gt;모델의 Posterior distribution을 얻어내면 이를 사용해서 데이터를 내가 원하는 만큼 생성할 수 있다. 이렇게 생성한 데이터가 진짜 분포로부터 생성된 데이터라고 가정하고 expected loss minimization을 행하면 된다. 기존 접근에서는 각 시간이 독립이므로 바로 중앙값을 취하면 그것이 최적해였지만 이제 한 번에 예측해야 하는 것이 벡터이므로 바로 중앙값을 계산하는 것은 불가능하다. 그러므로 임의의 해를 생성하여 그 해의 expected loss를 계산하고 이 해를 더 나은 해로 고치는 방식의 최적화를 통해서 expected loss를 minimize 한다. 이런 optimization을 위한 각종 최적화 라이브러리들이 많이 있으므로 이를 활용하면 된다.&lt;/p&gt;
+&lt;h3&gt;Result&lt;/h3&gt;
+&lt;p&gt;위의 예에서는 08:00의 데이터만 사용하였지만 위의 데이터 생성 스토리대로 각 도로의 24시간이 전부 연결되도록 한 번에 posterior를 생성할 수 있다. 하지만 예측해야 하는 변수가 도로별로 총 1,152개 (288개 시간 구간, μ, σ 각 두 개씩) 이므로 굉장히 많은 연산이 필요하다. 이를 쉽게 수행할 방법이 없어서 한 번에 두 시간 구간만 서로 연결이 되어 있다고 가정하고 학습을 하였다. 즉, 시간 t와 t+1이 공통의 p를 공유한다는 가정하에서 μ와 σ의 분포를 구해보았다.&lt;/p&gt;
+&lt;p&gt;학습 시간이 매우 오래 걸려서 MCMC의 iteration 회수를 많이 줄여서 학습시켰다. 이렇게 되면 통계적으로 안정적인 분포를 구할 수 없게 되므로 iteration 회수를 높이면 더 나은 결과를 얻을 수 있을 것이라는 기대를 할 수 있다. 시간적인 문제로 모든 도로에 대한 학습은 하지 못하고 몇 개의 도로만 뽑아서 결과를 비교해 보았다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;도로 1 하행선 &lt;br /&gt;
+중앙값 사용 12.38968749999999 &lt;br /&gt;
+새 모델 사용 12.438159722222231 &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;도로 10 하행선 &lt;br /&gt;
+중앙값 사용 2.760173611111111 &lt;br /&gt;
+새 모델 사용 2.9523258511926551 &lt;br /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;중앙값을 사용했을 때 전체 도로의 평균 loss가 4.7263이었음을 고려하면 도로 1은 예측과 크게 빗나간 예이고 도로 10은 예측과 아주 잘 맞아떨어진 예이다. 결과를 보면 여전히 중앙값을 사용한 모델이 더 좋지만 새 모델도 그에 근접하는 결과를 내는 것을 알 수 있다. 이 기법이 충분한 학습 시간을 할당 받지 못한 것을 고려하면 매우 고무적인 결과라 할 수 있다.&lt;/p&gt;
+&lt;h2&gt;Model Averaging&lt;/h2&gt;
+&lt;p&gt;중앙값을 사용했던 기존 결과보다 더 나은 결과를 내는 방법이 있다. 바로 모델 간의 평균을 사용하는 것이다. 즉, 중앙값을 사용한 모델과 위의 베이지안 접근 방법을 통해 얻은 모델의 결과를 평균 내는 것이다. 이 간단한 기법이 놀랍게도 더 나은 결과를 가져다준다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;도로 1 하행선 &lt;br /&gt;
+12.387465277777775 &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;도로 10 하행선 &lt;br /&gt;
+2.8562497311518831 &lt;br /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;아예 예측치가 매우 정확한 경우에는 (이미 예측이 충분히 좋으므로) 별 소득을 얻지 못했지만 그렇지 못했던 도로 1을 보면 두 모델보다 더 나은 결과를 얻어 내었다.
+이는 bias-variance tradeoff&lt;a href="#footnote2"&gt;&lt;span id="ref2"&gt;[2]&lt;/span&gt;&lt;/a&gt; 때문이다. 서로 다른 두 모델을 평균 내면서 variance가 떨어져서 예측의 정확도가 높아지는 것이다.&lt;/p&gt;
+&lt;h2&gt;Future Works&lt;/h2&gt;
+&lt;p&gt;아직도 더 나은 예측을 위해 개선할 여지는 많이 남아 있다.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="요일별 median 분포" src="/static/images/codesprint_pm_000.jpg" /&gt;
+&lt;center&gt;
+요일별 median 분포의 차이
+&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;위의 차트를 보면 명백한데, 주중 데이터에도 도로마다 요일별 차이가 큰 경우가 많다. 우리가 예측하고자 했던 것은 화요일이니 화요일의 분포에서 크게 벗어나는 부분은 제거하는 것이 더 나은 결과를 내는데 도움이 될 것이다.&lt;/p&gt;
+&lt;p&gt;다른 한 가지 개선 방법은 더 나은 데이터 생성 프로세스를 생각해내는 것이다. 가령 위의 예에서는 정규 분포에서 데이터가 생성된다고 가정하였는데 이는 거짓말이다. 평균 시속은 절대 음수가 나올 수 없는데 위의 모델에 따르면 음수의 속도가 뽑힐 확률이 존재하기 때문이다. 더 그럴싸한 이야기를 만들 수 있으면 더 나은 결과를 얻을 수 있을 것이다. 그 밖에도 cross validation을 통해 어떤 데이터에 대해 좋지 않은 결과를 내는지 파악해보고 이를 해결할 수 있는 방법을 고민해보면 계속해서 예측을 개선해 나갈 수 있을 것이다.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Base model 보다 더 낫거나 최소한 그와 비슷한 결과를 내는 방법을 대회 참가 때에는 내놓지 못해서 아쉬움이 남았었는데 이번 분석을 통해서 그 아쉬움을 조금 달래보았다. 데이터 분석 및 base model과 MCMC를 활용한 모델의 소스 코드는 Github의 &lt;a href="https://github.com/shurain/codesprint2013"&gt;저장소&lt;/a&gt;에 공개해두었다.&lt;/p&gt;
+&lt;p&gt;&lt;span id="footnote1"&gt;
+&lt;a href="#ref1"&gt;[1]&lt;/a&gt;: 보통 plate notation을 많이 사용하지만 개인적으로는 모델의 이해에 큰 도움이 되지는 않는다고 생각한다. 이와 같은 의견은 &lt;a href="http://zinkov.com/posts/2013-07-28-stop-using-plates/"&gt;여기에서&lt;/a&gt; 볼 수 있다.
+&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span id="footnote2"&gt;
+&lt;a href="#ref2"&gt;[2]&lt;/a&gt;: &lt;a href="http://www.cs.cornell.edu/courses/cs578/2005fa/CS578.bagging.boosting.lecture.pdf"&gt;Bias/Variance Tradeoff&lt;/a&gt;를 참고하기 바란다.
+&lt;/span&gt;&lt;/p&gt;</summary><category term="code sprint"></category><category term="forecasting"></category></entry><entry><title>Code Sprint 2013 Round 2</title><link href="http://blog.shurain.net/2013/07/code-sprint-2013-round-2.html" rel="alternate"></link><updated>2013-07-20T00:00:00+00:00</updated><author><name>Sungjoo Ha</name></author><id>tag:blog.shurain.net,2013-07-20:2013/07/code-sprint-2013-round-2.html</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;SK planet에서 정기적으로 Code Sprint라는 프로그래밍 경진 대회를 주최한다. 얼마 전에 Code Sprint 2013의 라운드 2 결과가 나왔는데 운이 좋게도 내가 1위를 할 수 있었다. 이번 대회의 목표는 과거의 교통정보 데이터를 사용하여 미래의 교통정보를 예측하는 것이었다.&lt;/p&gt;
 &lt;p&gt;대회 페이지의 설명을 그대로 옮겨보면, &lt;/p&gt;
 &lt;blockquote&gt;
