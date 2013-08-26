@@ -28,7 +28,9 @@ Tags: code sprint, forecasting
 ### Data Generation Model
 우리는 예측에 앞서 각 데이터를 생성하는 분포에 관심이 많다. 이는 만약 데이터를 생성하는 분포를 정확하게 알 수 있다면 우리가 원하는 만큼 데이터를 생성하고 이를 활용하여 예측에 사용할 수 있기 때문이다. 데이터가 어떤 방식으로 생성 되었는지에 대한 직관은 데이터를 살펴보면 얻을 수 있는 경우가 많다.
 
+<center>
 ![1번 도로 하행선의 4월 평균 시속 분포 (08:00)](/static/images/codesprint_pm_0800.png)
+</center>
 
 위의 차트는 1번 도로 하행선의 08:00의 4월 데이터이다. 살펴보면 대부분의 경우는 시속 20km 정도의 평균 시속을 보이지만 간혹 시속 80km에 가깝게 튀는 데이터들이 있다. 이는 주말에 차가 몰리지 않아서 생기는 현상이라고 결론짓고 넘어갈 수도 있지만 자세히 보면 그런 데이터의 절반은 평일에 일어난 데이터이다.
 이를 토대로 다음과 같은 가설을 세울 수 있다.
@@ -54,11 +56,11 @@ Tags: code sprint, forecasting
 
 Prior distribution과 likelihood 계산을 위한 모델은 위의 데이터 생성 스토리에 모두 나타나 있다. 이제 이를 사용해서 μ(t)와 σ(t)의 posterior 분포를 계산해보는 것이 가능하다. Posterior distribution을 구하는 방법은 여러 가지가 있지만 나는 MCMC 기법을 활용하였다. 앞서 본 4월 데이터를 살펴보자.
 
-![Posterior distribution](codesprint_pm_musigma.png)
+![Posterior distribution](/static/images/codesprint_pm_musigma.png)
 <center>
 μ와 σ의 posterior distribution
 </center>
-![Model choice distribution](codesprint_pm_p.png)
+![Model choice distribution](/static/images/codesprint_pm_p.png)
 <center>
 p의 분포
 </center>
