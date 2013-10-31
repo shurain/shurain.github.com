@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>sh.</title><link href="http://blog.shurain.net/" rel="alternate"></link><link href="http://feeds.feedburner.com/feeds/all-en.atom.xml" rel="self"></link><id>http://blog.shurain.net/</id><updated>2013-10-31T00:00:00+00:00</updated><entry><title>Naive Bayes Classifier</title><link href="http://blog.shurain.net/2013/10/naive-bayes-classifier.html" rel="alternate"></link><updated>2013-10-31T00:00:00+00:00</updated><author><name>Sungjoo Ha</name></author><id>tag:blog.shurain.net,2013-10-31:2013/10/naive-bayes-classifier.html</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;스팸 문서 판별에 가장 쉽게 사용할 수 있는 기계 학습 기법으로 &lt;a href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier"&gt;나이브 베이즈 분류기&lt;/a&gt;가 있다.
-최근에 이와 관련된 간단한 발표를 할 일이 있어서 &lt;a href="/static/images/naivebayes.beamer.pdf"&gt;관련 자료&lt;/a&gt;를 만들어 보았다.
+최근에 이와 관련된 간단한 발표를 할 일이 있어서 &lt;a href="http://cl.ly/0s2U3L0Y2Q0L"&gt;관련 자료&lt;/a&gt;를 만들어 보았다.
 대부분의 내용은 Mathematicalmonk의 &lt;a href="https://www.youtube.com/watch?v=8yvBqhm92xA&amp;amp;list=PLD0F06AA0D2E8FFBA&amp;amp;index=46"&gt;Naive Bayes classification 영상&lt;/a&gt;을 참고하였다.&lt;/p&gt;
 &lt;h2&gt;Naive Bayes&lt;/h2&gt;
 &lt;p&gt;자세한 이야기는 발표 자료를 참고하기로 하고, 몇 가지 언급하고 싶은 것들만 짚어보도록 하겠다.&lt;/p&gt;

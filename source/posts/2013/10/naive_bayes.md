@@ -6,7 +6,7 @@ Category: Blog
 ## Introduction
 
 스팸 문서 판별에 가장 쉽게 사용할 수 있는 기계 학습 기법으로 [나이브 베이즈 분류기](https://en.wikipedia.org/wiki/Naive_Bayes_classifier)가 있다.
-최근에 이와 관련된 간단한 발표를 할 일이 있어서 [관련 자료](/static/images/naivebayes.beamer.pdf)를 만들어 보았다.
+최근에 이와 관련된 간단한 발표를 할 일이 있어서 [관련 자료](http://cl.ly/0s2U3L0Y2Q0L)를 만들어 보았다.
 대부분의 내용은 Mathematicalmonk의 [Naive Bayes classification 영상](https://www.youtube.com/watch?v=8yvBqhm92xA&list=PLD0F06AA0D2E8FFBA&index=46)을 참고하였다.
 
 ## Naive Bayes
