@@ -2,6 +2,7 @@ Date: 2013-10-31
 Title: Naive Bayes Classifier
 Slug: naive-bayes-classifier
 Category: Blog
+Status: drafts
 
 ## Introduction
 
@@ -26,7 +27,6 @@ Category: Blog
 대부분의 나이브 베이즈 구현은 모델 패러미터를 maximum likelihood estimate을 사용하여 추정하는데, 이는 point estimate에 불과하고 진정한 의미의 베이지안은 아니다.
 베이지안에 대해 더 알고 싶다면 이를 잘 정리한 [WHAT IS BAYESIAN/FREQUENTIST INFERENCE?](http://normaldeviate.wordpress.com/2012/11/17/what-is-bayesianfrequentist-inference/)를 참고하기 바란다.
 위의 글에서 Nate Silver의 책 Signal and the Noise 혹은 Sharon McGrayne의 책 The Theory That Would Not Die 등에서 행하는 흔한 실수에 대해 논한다.[<span id="ref">[1]</span>](#footnote1)
-
 
 
 <span id="footnote1">
