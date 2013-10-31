@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+                <title>Naive Bayes Classifier</title>
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href="../../theme/css/main.min.css" type="text/css" />
+        <link rel="stylesheet" href="../../theme/css/pygments.min.css" type="text/css" />
+        <link rel="stylesheet" href="../../theme/css/font-awesome.min.css" type="text/css" />
+        <meta charset="utf-8" />
+      
+        
+        </head>
+
+<body id="index" class="home">
+         <div class="navigation">
+        <ol class="nav">
+          <li class="current"><a href="../..">Blog</a> </li>
+          <li><a href="../../archives.html">Archive</a></li>
+          <li><a href="../../tags.html">Tags</a> </li>
+          <li><a href="http://feeds.feedburner.com/shurain">RSS</a> </li>
+        </ol>
+      </div>
+        <header id="banner" class="body">
+                <div class="banner"><a href="../..">sh. <strong></strong></a></div>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+                    <li><a href="/archives.html">Archives</a></li>
+                                      <li><a href="../../2013/10/pages/about.html">About</a></li>
+                          </ul></nav><!-- /#menu -->
+        <div class="box">
+            <section id="content" class="body">
+  <header class="post">
+    <h1 class="entry-title">
+      Naive Bayes Classifier
+    </h1>
+  </header>
+  <footer class="post-info">
+    <abbr>
+      Thu 31 October 2013 
+               By <a class="url fn" href="../../author/sungjoo-ha.html">Sungjoo Ha</a>
+        
+    </abbr>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <h2>Introduction</h2>
+<p>스팸 문서 판별에 가장 쉽게 사용할 수 있는 기계 학습 기법으로 <a href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier">나이브 베이즈 분류기</a>가 있다.
+최근에 이와 관련된 간단한 발표를 할 일이 있어서 <a href="/static/images/naivebayes.beamer.pdf">관련 자료</a>를 만들어 보았다.
+대부분의 내용은 Mathematicalmonk의 <a href="https://www.youtube.com/watch?v=8yvBqhm92xA&amp;list=PLD0F06AA0D2E8FFBA&amp;index=46">Naive Bayes classification 영상</a>을 참고하였다.</p>
+<h2>Naive Bayes</h2>
+<p>자세한 이야기는 발표 자료를 참고하기로 하고, 몇 가지 언급하고 싶은 것들만 짚어보도록 하겠다.</p>
+<h3>Conditional Independence</h3>
+<p>나이브 베이즈에서 "나이브"라는 이름이 붙은 이유는 레이블이 이미 주어졌다고 가정하면 (conditional), 피쳐들이 서로 독립이라는 (independence) 가정 때문이다.
+이는 패러미터를 유추하는 작업을 쉽게 만들기 위해서 도입되었다고 생각되는데, 다행히도 문서를 다룰 때에는 이러한 독립성 가정이 잘 동작하는 편이다.</p>
+<h3>Bayes Theorem &amp; Bayesian Inference</h3>
+<p>나이브 베이즈의 "베이즈"는 베이즈 정리를 사용한 부분에서 나온 것이다.
+그저 베이즈 정리를 사용할 뿐이지 딱히 베이지안 추론 기법은 아니라는 점을 이해하는 것이 중요하다.
+베이지안 추론 기법은 모델의 패러미터를 전부 고려하여 이를 적분해버리는 것이 골자이지 베이즈 정리를 사용하는 것이 핵심이 아니다.
+대부분의 나이브 베이즈 구현은 모델 패러미터를 maximum likelihood estimate을 사용하여 추정하는데, 이는 point estimate에 불과하고 진정한 의미의 베이지안은 아니다.
+베이지안에 대해 더 알고 싶다면 이를 잘 정리한 <a href="http://normaldeviate.wordpress.com/2012/11/17/what-is-bayesianfrequentist-inference/">WHAT IS BAYESIAN/FREQUENTIST INFERENCE?</a>를 참고하기 바란다.
+위의 글에서 Nate Silver의 책 Signal and the Noise 혹은 Sharon McGrayne의 책 The Theory That Would Not Die 등에서 행하는 흔한 실수에 대해 논한다.<a href="#footnote1"><span id="ref">[1]</span></a></p>
+<p><span id="footnote1">
+<a href="#ref1">[1]</a>: 이에 대한 더 자세한 글로 동일 저자의 글인 <a href="http://normaldeviate.wordpress.com/2012/12/04/nate-silver-is-a-frequentist-review-of-the-signal-and-the-noise/">Nate Silver Is A Frequentist</a>도 있다.
+</span></p>
+  </div><!-- /.entry-content -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'shurain'; 
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+            <hr/>
+            <footer id="contentinfo" class="footer">
+                <div>
+                    <a href="../..">Sungjoo Ha</a> (2013)
+                </div>
+                <div>
+                    Design licensed under <a rel="license" href="http://opensource.org/licenses/bsd-3-clause">3 clause BSD</a>. Source code available on <a rel="source code" href="https://github.com/slok/blog">Github</a>
+                </div>
+                <div>
+                    powered by <a href="http://getpelican.com/">Pelican</a>
+                    and <a href="http://python.org">Python</a>. 
+                    <a href="http://github.com/slok/iris">Theme</a> by <a href="http://xlarrakoetxea.org">Xabier Larrakoetxea</a> based on <a href="http://flask.pocoo.org/">Flask</a> theme
+                </div>
+                <div>
+                    Social icons (font awesome) by <a href="http://fortawesome.github.com/Font-Awesome/"> fort awesome<a>.
+                    <a href="http://www.google.com/webfonts/specimen/The+Girl+Next+Door">Title</a>, <a href="http://www.google.com/webfonts/specimen/Marcellus">headers</a> and <a href="http://www.google.com/webfonts/specimen/Inconsolata">source code</a> fonts by google fonts
+                </div>
+                <div class="social">
+                                            <a href="https://www.facebook.com/shurain.net"><i class="icon-facebook"></i>  </a>
+                                            <a href="http://twitter.com/shurain_"><i class="icon-twitter"></i>  </a>
+                                            <a href="https://github.com/shurain/"><i class="icon-github"></i>  </a>
+                                                        </div>
+            </footer><!-- /#contentinfo -->
+        </div>
+
+        <!-- Javascript-->
+        <script src="../../theme/js/invisible-menu-scroll.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+        <script type="text/javascript"> 
+          $(function() {
+            invisibleMenu();
+          });
+        </script> 
+
+        <!--Add statistycs-->
+        <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', "UA-20801130-1"]);
+      _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
