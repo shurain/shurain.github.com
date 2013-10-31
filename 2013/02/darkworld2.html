@@ -6,9 +6,9 @@
         <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
         
         <!-- CSS -->
-        <link rel="stylesheet" href="http://blog.shurain.net/theme/css/main.min.css" type="text/css" />
-        <link rel="stylesheet" href="http://blog.shurain.net/theme/css/pygments.min.css" type="text/css" />
-        <link rel="stylesheet" href="http://blog.shurain.net/theme/css/font-awesome.min.css" type="text/css" />
+        <link rel="stylesheet" href="../../theme/css/main.min.css" type="text/css" />
+        <link rel="stylesheet" href="../../theme/css/pygments.min.css" type="text/css" />
+        <link rel="stylesheet" href="../../theme/css/font-awesome.min.css" type="text/css" />
         <meta charset="utf-8" />
       
         
@@ -17,18 +17,18 @@
 <body id="index" class="home">
          <div class="navigation">
         <ol class="nav">
-          <li class="current"><a href="http://blog.shurain.net">Blog</a> </li>
-          <li><a href="http://blog.shurain.net/archives.html">Archive</a></li>
-          <li><a href="http://blog.shurain.net/tags.html">Tags</a> </li>
+          <li class="current"><a href="../..">Blog</a> </li>
+          <li><a href="../../archives.html">Archive</a></li>
+          <li><a href="../../tags.html">Tags</a> </li>
           <li><a href="http://feeds.feedburner.com/shurain">RSS</a> </li>
         </ol>
       </div>
         <header id="banner" class="body">
-                <div class="banner"><a href="http://blog.shurain.net">sh. <strong></strong></a></div>
+                <div class="banner"><a href="../..">sh. <strong></strong></a></div>
         </header><!-- /#banner -->
         <nav id="menu"><ul>
                     <li><a href="/archives.html">Archives</a></li>
-                                      <li><a href="http://blog.shurain.net/2013/08/pages/about.html">About</a></li>
+                                      <li><a href="../../2013/10/pages/about.html">About</a></li>
                           </ul></nav><!-- /#menu -->
         <div class="box">
             <section id="content" class="body">
@@ -39,8 +39,8 @@
   </header>
   <footer class="post-info">
     <abbr>
-      수 20 2월 2013 
-               By <a class="url fn" href="http://blog.shurain.net/author/sungjoo-ha.html">Sungjoo Ha</a>
+      Wed 20 February 2013 
+               By <a class="url fn" href="../../author/sungjoo-ha.html">Sungjoo Ha</a>
         
     </abbr>
   </footer><!-- /.post-info -->
@@ -151,7 +151,7 @@ Posterior distribution을 얻는 것은 바로 위에서 설명하였다시피 l
 <p>1위는 아주 기본적인 Metropolis-Hastings 기법을 사용하였고, 2위는 그보다 더 세련된 Slice sampler를 사용하였는데 둘 다 원하는 분포에서 샘플링을 한다는 본질에는 차이가 없다.
 MCMC 자체가 왜 동작하는지 이해하는 것은 꽤 많은 설명이 필요하지만 그 구현 자체는 무척 간단하다.<a href="#footnote4"><span id="ref4">[4]</span></a>
 간단히 Metropolis-Hastings 기법을 이번 문제에 적용하면 다음과 같다.</p>
-<div class="highlight"><pre><span class="n">Choose</span> <span class="n">random</span> <span class="n">halo</span> <span class="n">position</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="codehilite"><pre><span class="n">Choose</span> <span class="n">random</span> <span class="n">halo</span> <span class="n">position</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">:</span>
     <span class="k">for</span> <span class="n">j</span> <span class="n">in</span> <span class="n">range</span><span class="p">(</span><span class="n">number</span> <span class="n">of</span> <span class="n">halos</span><span class="p">)</span><span class="o">:</span>
        <span class="n">Sample</span> <span class="n">x</span> <span class="n">by</span> <span class="n">randomly</span> <span class="n">moving</span> <span class="n">jth</span> <span class="n">halo</span> <span class="n">of</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -211,7 +211,7 @@ MCMC 자체가 왜 동작하는지 이해하는 것은 꽤 많은 설명이 필�
             <hr/>
             <footer id="contentinfo" class="footer">
                 <div>
-                    <a href="http://blog.shurain.net">Sungjoo Ha</a> (2013)
+                    <a href="../..">Sungjoo Ha</a> (2013)
                 </div>
                 <div>
                     Design licensed under <a rel="license" href="http://opensource.org/licenses/bsd-3-clause">3 clause BSD</a>. Source code available on <a rel="source code" href="https://github.com/slok/blog">Github</a>
@@ -234,7 +234,7 @@ MCMC 자체가 왜 동작하는지 이해하는 것은 꽤 많은 설명이 필�
         </div>
 
         <!-- Javascript-->
-        <script src="http://blog.shurain.net/theme/js/invisible-menu-scroll.js"></script>
+        <script src="../../theme/js/invisible-menu-scroll.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
         <script type="text/javascript"> 
           $(function() {

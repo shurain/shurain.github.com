@@ -6,9 +6,9 @@
         <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
         
         <!-- CSS -->
-        <link rel="stylesheet" href="http://blog.shurain.net/theme/css/main.min.css" type="text/css" />
-        <link rel="stylesheet" href="http://blog.shurain.net/theme/css/pygments.min.css" type="text/css" />
-        <link rel="stylesheet" href="http://blog.shurain.net/theme/css/font-awesome.min.css" type="text/css" />
+        <link rel="stylesheet" href="./theme/css/main.min.css" type="text/css" />
+        <link rel="stylesheet" href="./theme/css/pygments.min.css" type="text/css" />
+        <link rel="stylesheet" href="./theme/css/font-awesome.min.css" type="text/css" />
         <meta charset="utf-8" />
       
         
@@ -17,18 +17,18 @@
 <body id="index" class="home">
          <div class="navigation">
         <ol class="nav">
-          <li class="current"><a href="http://blog.shurain.net">Blog</a> </li>
-          <li><a href="http://blog.shurain.net/archives.html">Archive</a></li>
-          <li><a href="http://blog.shurain.net/tags.html">Tags</a> </li>
+          <li class="current"><a href=".">Blog</a> </li>
+          <li><a href="./archives.html">Archive</a></li>
+          <li><a href="./tags.html">Tags</a> </li>
           <li><a href="http://feeds.feedburner.com/shurain">RSS</a> </li>
         </ol>
       </div>
         <header id="banner" class="body">
-                <div class="banner"><a href="http://blog.shurain.net">sh. <strong></strong></a></div>
+                <div class="banner"><a href=".">sh. <strong></strong></a></div>
         </header><!-- /#banner -->
         <nav id="menu"><ul>
                     <li><a href="/archives.html">Archives</a></li>
-                                      <li><a href="http://blog.shurain.net/2013/08/pages/about.html">About</a></li>
+                                      <li><a href="./2013/10/pages/about.html">About</a></li>
                           </ul></nav><!-- /#menu -->
         <div class="box">
                     
@@ -40,23 +40,21 @@
             <article class="archive">
                 <header> 
                     <h1 class="archive-entry-title">
-                        <a href="http://blog.shurain.net/2013/03/price-rights.html" rel="bookmark" title="Permalink to Bayesian Approach to the Price is Right's Showdown">Bayesian Approach to the Price is Right's Showdown</a>
+                        <a href="./2013/04/crf.html" rel="bookmark" title="Permalink to Conditional Random Field">Conditional Random Field</a>
                     </h1> 
                 </header>
                 <footer class="post-info">
                     <abbr>
-                      화 12 3월 2013 
-                                               By <a class="url fn" href="http://blog.shurain.net/author/sungjoo-ha.html">Sungjoo Ha</a>
+                      Tue 16 April 2013 
+                                               By <a class="url fn" href="./author/sungjoo-ha.html">Sungjoo Ha</a>
                         
                     </abbr>
-                    <div class="entry-summary"> <p><a href="/2013/02/darkworld2.html">지난 글</a>에서 Observing Dark Worlds 대회에 1, 2위가
-사용한 방법을 설명하면서 Bayesian 방식으로 문제에 접근하는 이야기를 했었다.
-이런 Bayesian 방식을 쉽게 잘 설명한 글로
-<a href="http://camdp.com/blogs/how-solve-price-rights-showdown">How to solve the Price is Right's Showdown</a>이라는
-블로그 글이 있다.</p>
-<p>이 글은 <a href="http://en.wikipedia.org/wiki/The_Price_Is_Right">The Price Is Right</a>이라는
-TV 쇼의 마지막 대결 The ...</p>
-                    <a href="http://blog.shurain.net/2013/03/price-rights.html">read more</a></div>
+                    <div class="entry-summary"> <h2>Introduction</h2>
+<p>Conditional random field는 (CRF) 레이블의 인접성에 대한 정보를 바탕으로 레이블을 추측하는 기계학습 기법이다.
+CRF를 활용하여 여러 가지 재미있는 것들을 할 수 있는데, 이를 활용하는 방법에 대해 이야기하겠다. <a href="#footnote1"><span id="ref1">[1]</span></a></p>
+<p>하지만 그래도 CRF가 어떤 식으로 동작하는 지 대충은 알아야 하니 대략적인 설명을 해보도록 하자.
+보통 품사 태깅을 (Part-of-speech tagging) 예로 많이 ...</p>
+                    <a href="./2013/04/crf.html">read more</a></div>
                 </footer><!-- /.post-info -->
                 <!-- /.entry-content -->
             </article>
@@ -66,25 +64,23 @@ TV 쇼의 마지막 대결 The ...</p>
             <article class="archive">
                 <header> 
                     <h1 class="archive-entry-title">
-                        <a href="http://blog.shurain.net/2013/02/darkworld2.html" rel="bookmark" title="Permalink to Dark World Part II">Dark World Part II</a>
+                        <a href="./2013/03/price-rights.html" rel="bookmark" title="Permalink to Bayesian Approach to the Price is Right's Showdown">Bayesian Approach to the Price is Right's Showdown</a>
                     </h1> 
                 </header>
                 <footer class="post-info">
                     <abbr>
-                      수 20 2월 2013 
-                                               By <a class="url fn" href="http://blog.shurain.net/author/sungjoo-ha.html">Sungjoo Ha</a>
+                      Tue 12 March 2013 
+                                               By <a class="url fn" href="./author/sungjoo-ha.html">Sungjoo Ha</a>
                         
                     </abbr>
-                    <div class="entry-summary"> <h2>Introduction</h2>
-<p><a href="/2013/02/darkworld1.html">지난 글</a>에 이어 <a href="http://www.kaggle.com/c/DarkWorlds">Observing Dark Worlds</a> 대회에 대한 이야기를 계속하겠다.
-이번에는 1, 2위가 사용한 방법의 큰 그림을 그리면서 가능하면 자세하게 설명을 하고자 한다.</p>
-<p>본인들이 직접 자신들의 방법을 설명한 글은 다음의 링크에서 볼 수 있다.</p>
-<ul>
-<li><a href="http://timsalimans.com/observing-dark-worlds/">Observing Dark Worlds (1위)</a></li>
-<li><a href="http://homepages.inf.ed.ac.uk/imurray2/pub/12kaggle_dark/">A Bayesian approach to Observing Dark Worlds (2위)</a></li>
-</ul>
-<h2>Decision Theory ...</h2>
-                    <a href="http://blog.shurain.net/2013/02/darkworld2.html">read more</a></div>
+                    <div class="entry-summary"> <p><a href="/2013/02/darkworld2.html">지난 글</a>에서 Observing Dark Worlds 대회에 1, 2위가
+사용한 방법을 설명하면서 Bayesian 방식으로 문제에 접근하는 이야기를 했었다.
+이런 Bayesian 방식을 쉽게 잘 설명한 글로
+<a href="http://camdp.com/blogs/how-solve-price-rights-showdown">How to solve the Price is Right's Showdown</a>이라는
+블로그 글이 있다.</p>
+<p>이 글은 <a href="http://en.wikipedia.org/wiki/The_Price_Is_Right">The Price Is Right</a>이라는
+TV 쇼의 마지막 대결 The ...</p>
+                    <a href="./2013/03/price-rights.html">read more</a></div>
                 </footer><!-- /.post-info -->
                 <!-- /.entry-content -->
             </article>
@@ -92,15 +88,15 @@ TV 쇼의 마지막 대결 The ...</p>
         </ol><!-- /#posts-list -->
 </div>
 <p class="paginator">
-                        <a href="http://blog.shurain.net/index2.html">&laquo;</a>
+                        <a href="./index2.html">&laquo;</a>
                 Page 3 / 4
-            <a href="http://blog.shurain.net/index4.html">&raquo;</a>
+            <a href="./index4.html">&raquo;</a>
     </p>
 </section><!-- /#content -->
             <hr/>
             <footer id="contentinfo" class="footer">
                 <div>
-                    <a href="http://blog.shurain.net">Sungjoo Ha</a> (2013)
+                    <a href=".">Sungjoo Ha</a> (2013)
                 </div>
                 <div>
                     Design licensed under <a rel="license" href="http://opensource.org/licenses/bsd-3-clause">3 clause BSD</a>. Source code available on <a rel="source code" href="https://github.com/slok/blog">Github</a>
@@ -123,7 +119,7 @@ TV 쇼의 마지막 대결 The ...</p>
         </div>
 
         <!-- Javascript-->
-        <script src="http://blog.shurain.net/theme/js/invisible-menu-scroll.js"></script>
+        <script src="./theme/js/invisible-menu-scroll.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
         <script type="text/javascript"> 
           $(function() {
