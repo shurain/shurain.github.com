@@ -2,7 +2,6 @@ Date: 2013-10-31
 Title: Naive Bayes Classifier
 Slug: naive-bayes-classifier
 Category: Blog
-Status: drafts
 
 ## Introduction
 
