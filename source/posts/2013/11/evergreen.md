@@ -1,4 +1,4 @@
-Date: 2013-10-31
+Date: 2013-11-08
 Title: StumbleUpon Evergreen Classification Challenge
 Slug: stumbleupon-evergreen-classification-challenge
 Category: Blog

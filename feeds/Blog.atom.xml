@@ -1,23 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>sh.</title><link href="http://blog.shurain.net/" rel="alternate"></link><link href="http://feeds.feedburner.com/feeds/Blog.atom.xml" rel="self"></link><id>http://blog.shurain.net/</id><updated>2013-10-31T00:00:00+00:00</updated><entry><title>Naive Bayes Classifier</title><link href="http://blog.shurain.net/2013/10/naive-bayes-classifier.html" rel="alternate"></link><updated>2013-10-31T00:00:00+00:00</updated><author><name>Sungjoo Ha</name></author><id>tag:blog.shurain.net,2013-10-31:2013/10/naive-bayes-classifier.html</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;스팸 문서 판별에 가장 쉽게 사용할 수 있는 기계 학습 기법으로 &lt;a href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier"&gt;나이브 베이즈 분류기&lt;/a&gt;가 있다.
-최근에 이와 관련된 간단한 발표를 할 일이 있어서 &lt;a href="http://cl.ly/0s2U3L0Y2Q0L"&gt;관련 자료&lt;/a&gt;를 만들어 보았다.
-대부분의 내용은 Mathematicalmonk의 &lt;a href="https://www.youtube.com/watch?v=8yvBqhm92xA&amp;amp;list=PLD0F06AA0D2E8FFBA&amp;amp;index=46"&gt;Naive Bayes classification 영상&lt;/a&gt;을 참고하였다.&lt;/p&gt;
-&lt;h2&gt;Naive Bayes&lt;/h2&gt;
-&lt;p&gt;자세한 이야기는 발표 자료를 참고하기로 하고, 몇 가지 언급하고 싶은 것들만 짚어보도록 하겠다.&lt;/p&gt;
-&lt;h3&gt;Conditional Independence&lt;/h3&gt;
-&lt;p&gt;나이브 베이즈에서 "나이브"라는 이름이 붙은 이유는 레이블이 이미 주어졌다고 가정하면 (conditional), 피쳐들이 서로 독립이라는 (independence) 가정 때문이다.
-이는 패러미터를 유추하는 작업을 쉽게 만들기 위해서 도입되었다고 생각되는데, 다행히도 문서를 다룰 때에는 이러한 독립성 가정이 잘 동작하는 편이다.&lt;/p&gt;
-&lt;h3&gt;Bayes Theorem &amp;amp; Bayesian Inference&lt;/h3&gt;
-&lt;p&gt;나이브 베이즈의 "베이즈"는 베이즈 정리를 사용한 부분에서 나온 것이다.
-그저 베이즈 정리를 사용할 뿐이지 딱히 베이지안 추론 기법은 아니라는 점을 이해하는 것이 중요하다.
-베이지안 추론 기법은 모델의 패러미터를 전부 고려하여 이를 적분해버리는 것이 골자이지 베이즈 정리를 사용하는 것이 핵심이 아니다.
-대부분의 나이브 베이즈 구현은 모델 패러미터를 maximum likelihood estimate을 사용하여 추정하는데, 이는 point estimate에 불과하고 진정한 의미의 베이지안은 아니다.
-베이지안에 대해 더 알고 싶다면 이를 잘 정리한 &lt;a href="http://normaldeviate.wordpress.com/2012/11/17/what-is-bayesianfrequentist-inference/"&gt;WHAT IS BAYESIAN/FREQUENTIST INFERENCE?&lt;/a&gt;를 참고하기 바란다.
-위의 글에서 Nate Silver의 책 Signal and the Noise 혹은 Sharon McGrayne의 책 The Theory That Would Not Die 등에서 행하는 흔한 실수에 대해 논한다.&lt;a href="#footnote1"&gt;&lt;span id="ref"&gt;[1]&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span id="footnote1"&gt;
-&lt;a href="#ref1"&gt;[1]&lt;/a&gt;: 이에 대한 더 자세한 글로 동일 저자의 글인 &lt;a href="http://normaldeviate.wordpress.com/2012/12/04/nate-silver-is-a-frequentist-review-of-the-signal-and-the-noise/"&gt;Nate Silver Is A Frequentist&lt;/a&gt;도 있다.
-&lt;/span&gt;&lt;/p&gt;</summary></entry><entry><title>StumbleUpon Evergreen Classification Challenge</title><link href="http://blog.shurain.net/2013/10/stumbleupon-evergreen-classification-challenge.html" rel="alternate"></link><updated>2013-10-31T00:00:00+00:00</updated><author><name>Sungjoo Ha</name></author><id>tag:blog.shurain.net,2013-10-31:2013/10/stumbleupon-evergreen-classification-challenge.html</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>sh.</title><link href="http://blog.shurain.net/" rel="alternate"></link><link href="http://feeds.feedburner.com/feeds/Blog.atom.xml" rel="self"></link><id>http://blog.shurain.net/</id><updated>2013-11-08T00:00:00+00:00</updated><entry><title>StumbleUpon Evergreen Classification Challenge</title><link href="http://blog.shurain.net/2013/11/stumbleupon-evergreen-classification-challenge.html" rel="alternate"></link><updated>2013-11-08T00:00:00+00:00</updated><author><name>Sungjoo Ha</name></author><id>tag:blog.shurain.net,2013-11-08:2013/11/stumbleupon-evergreen-classification-challenge.html</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;지난 8월 Kaggle에서 &lt;a href="https://www.kaggle.com/c/stumbleupon"&gt;StumbleUpon Evergreen Classification Challenge&lt;/a&gt;가 있었다.
 이번 대회는 사용자에게 웹 문서를 추천해주는 서비스인 StumbleUpon에서 주최한 대회였다.
 StumbleUpon이 서비스를 제공하면서 어떤 종류의 글은 발행 후 시간이 어느 정도 지나면 사람들에게 추천해주기 좋지 않은 반면 어떠한 글은 발행 후 시간과 무관하게 사람들에게 추천할 가치가 있는, 서로 다른 성격을 지닌 글이 있음을 알게 되었다.
@@ -67,7 +49,25 @@ Boosting을 잘 활용하면 좋은 결과를 얻을 수 있지 않을까 싶었
 &lt;p&gt;평소에 늘 이런 기회가 생기면 새로운 도구를 하나씩 손에 익히려고 시도를 해보곤 하는데, 이번 대회에서는 &lt;a href="https://code.google.com/p/sofia-ml/"&gt;sofia-ml&lt;/a&gt;를 그럭저럭 사용해볼 수 있었다.
 Deep learning을 활용해보고 싶어서 &lt;a href="http://deeplearning.net/software/pylearn2/"&gt;pylearn2&lt;/a&gt;를 살펴보긴 하였는데 실제로 활용할 수 있는 수준까지는 익히지 못하였다.&lt;/p&gt;
 &lt;p&gt;처음 시도해본 NLP 프로젝트였는데, 생각보다 성적이 좋아서 기분이 좋았다.
-지난번 Kaggle 대회 시도 이후 느낀 바가 있어 계속해서 이런저런 공부를 하였는데 그 결과가 보이는 것 같다.&lt;/p&gt;</summary></entry><entry><title>Code Sprint 2013 Round 2 Post-mortem</title><link href="http://blog.shurain.net/2013/08/code-sprint-2013-round-2-post-mortem.html" rel="alternate"></link><updated>2013-08-27T00:00:00+00:00</updated><author><name>Sungjoo Ha</name></author><id>tag:blog.shurain.net,2013-08-27:2013/08/code-sprint-2013-round-2-post-mortem.html</id><summary type="html">&lt;style&gt;
+지난번 Kaggle 대회 시도 이후 느낀 바가 있어 계속해서 이런저런 공부를 하였는데 그 결과가 보이는 것 같다.&lt;/p&gt;</summary></entry><entry><title>Naive Bayes Classifier</title><link href="http://blog.shurain.net/2013/10/naive-bayes-classifier.html" rel="alternate"></link><updated>2013-10-31T00:00:00+00:00</updated><author><name>Sungjoo Ha</name></author><id>tag:blog.shurain.net,2013-10-31:2013/10/naive-bayes-classifier.html</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;스팸 문서 판별에 가장 쉽게 사용할 수 있는 기계 학습 기법으로 &lt;a href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier"&gt;나이브 베이즈 분류기&lt;/a&gt;가 있다.
+최근에 이와 관련된 간단한 발표를 할 일이 있어서 &lt;a href="http://cl.ly/0s2U3L0Y2Q0L"&gt;관련 자료&lt;/a&gt;를 만들어 보았다.
+대부분의 내용은 Mathematicalmonk의 &lt;a href="https://www.youtube.com/watch?v=8yvBqhm92xA&amp;amp;list=PLD0F06AA0D2E8FFBA&amp;amp;index=46"&gt;Naive Bayes classification 영상&lt;/a&gt;을 참고하였다.&lt;/p&gt;
+&lt;h2&gt;Naive Bayes&lt;/h2&gt;
+&lt;p&gt;자세한 이야기는 발표 자료를 참고하기로 하고, 몇 가지 언급하고 싶은 것들만 짚어보도록 하겠다.&lt;/p&gt;
+&lt;h3&gt;Conditional Independence&lt;/h3&gt;
+&lt;p&gt;나이브 베이즈에서 "나이브"라는 이름이 붙은 이유는 레이블이 이미 주어졌다고 가정하면 (conditional), 피쳐들이 서로 독립이라는 (independence) 가정 때문이다.
+이는 패러미터를 유추하는 작업을 쉽게 만들기 위해서 도입되었다고 생각되는데, 다행히도 문서를 다룰 때에는 이러한 독립성 가정이 잘 동작하는 편이다.&lt;/p&gt;
+&lt;h3&gt;Bayes Theorem &amp;amp; Bayesian Inference&lt;/h3&gt;
+&lt;p&gt;나이브 베이즈의 "베이즈"는 베이즈 정리를 사용한 부분에서 나온 것이다.
+그저 베이즈 정리를 사용할 뿐이지 딱히 베이지안 추론 기법은 아니라는 점을 이해하는 것이 중요하다.
+베이지안 추론 기법은 모델의 패러미터를 전부 고려하여 이를 적분해버리는 것이 골자이지 베이즈 정리를 사용하는 것이 핵심이 아니다.
+대부분의 나이브 베이즈 구현은 모델 패러미터를 maximum likelihood estimate을 사용하여 추정하는데, 이는 point estimate에 불과하고 진정한 의미의 베이지안은 아니다.
+베이지안에 대해 더 알고 싶다면 이를 잘 정리한 &lt;a href="http://normaldeviate.wordpress.com/2012/11/17/what-is-bayesianfrequentist-inference/"&gt;WHAT IS BAYESIAN/FREQUENTIST INFERENCE?&lt;/a&gt;를 참고하기 바란다.
+위의 글에서 Nate Silver의 책 Signal and the Noise 혹은 Sharon McGrayne의 책 The Theory That Would Not Die 등에서 행하는 흔한 실수에 대해 논한다.&lt;a href="#footnote1"&gt;&lt;span id="ref"&gt;[1]&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span id="footnote1"&gt;
+&lt;a href="#ref1"&gt;[1]&lt;/a&gt;: 이에 대한 더 자세한 글로 동일 저자의 글인 &lt;a href="http://normaldeviate.wordpress.com/2012/12/04/nate-silver-is-a-frequentist-review-of-the-signal-and-the-noise/"&gt;Nate Silver Is A Frequentist&lt;/a&gt;도 있다.
+&lt;/span&gt;&lt;/p&gt;</summary></entry><entry><title>Code Sprint 2013 Round 2 Post-mortem</title><link href="http://blog.shurain.net/2013/08/code-sprint-2013-round-2-post-mortem.html" rel="alternate"></link><updated>2013-08-27T00:00:00+00:00</updated><author><name>Sungjoo Ha</name></author><id>tag:blog.shurain.net,2013-08-27:2013/08/code-sprint-2013-round-2-post-mortem.html</id><summary type="html">&lt;style&gt;
 .err {
     color: #000000;
     border: none;
