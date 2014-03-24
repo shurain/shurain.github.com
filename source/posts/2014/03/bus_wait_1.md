@@ -2,7 +2,6 @@ Date: 2014-03-24
 Title: 버스 대기 시간
 Slug: bus-wait-1
 Category: Blog
-Tags: kaggle, dark world
 
 ## Introduction
 
