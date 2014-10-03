@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Code Sprint 2014 Round 1 - English Segmentation Based on Naive Bayes</title>
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://blog.shurain.net/theme/css/main.min.css" type="text/css" />
+        <link rel="stylesheet" href="http://blog.shurain.net/theme/css/font-awesome.min.css" type="text/css" />
+        <meta charset="utf-8" />
+
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+              config: ["TeX-MML-AM_HTMLorMML.js"],
+              extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js"],
+              jax: ["input/TeX"],
+              tex2jax: {
+                  inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                  displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                  processEscapes: false
+              },
+              TeX: {
+                  TagSide: "right",
+                  TagIndent: ".8em",
+                  MultLineWidth: "85%",
+                  equationNumbers: {
+                     autoNumber: "AMS",
+                  },
+              },
+              showProcessingMessages: false
+          });
+        </script>
+
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+
+</head>
+
+<body id="index" class="home">
+     <div class="navigation">
+        <ol class="nav">
+          <li class="current"><a href="http://blog.shurain.net">Blog</a> </li>
+          <li><a href="http://blog.shurain.net/archives.html">Archive</a></li>
+          <li><a href="http://blog.shurain.net/tags.html">Tags</a> </li>
+          <li><a href="http://feeds.feedburner.com/shurain">RSS</a> </li>
+        </ol>
+      </div>
+        <header id="banner" class="body">
+                <div class="banner"><a href="http://blog.shurain.net">sh. <strong></strong></a></div>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+            <li><a href="/archives.html">Archives</a></li>
+            <li><a href="http://blog.shurain.net/2014/05/pages/about.html">About</a></li>
+        </ul></nav><!-- /#menu -->
+        <div class="box">
+<section id="content" class="body">
+  <header class="post">
+    <h1 class="entry-title">
+      Code Sprint 2014 Round 1 - English Segmentation Based on Naive Bayes
+    </h1>
+  </header>
+  <footer class="post-info">
+    <abbr>
+      Tue 20 May 2014 
+         By <a class="url fn" href="http://blog.shurain.net/author/sungjoo-ha.html">Sungjoo Ha</a>
+  
+    </abbr>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <h2>Introduction</h2>
+<p>올해의 SK planet Code Sprint round 1의 주제는 영어 띄어쓰기였다.</p>
+<p>주어진 설명은 다음과 같았다.</p>
+<blockquote>
+<p>(영어로 된) Query를 제공하고 각 단어를 정확히 segment(분리)합니다.
+예) "coffeebean" =&gt; "coffee bean"</p>
+</blockquote>
+<h2>Approach</h2>
+<p>가능한 접근 방법이 여러 가지 있겠지만, 내가 생각한 방법은 두 가지 이다.
+그 중 하나를 오늘 이야기하고자 한다.</p>
+<h2>Discussion</h2>
+<p>이번 글에서는 아주 간략하게 <a href="http://en.wikipedia.org/wiki/Length_time_bias">length time bias</a>를 소개하고 이에 따른 버스 대기 시간의 변화에 대해 논하였다. 그리고 아주 단순한 전략을 소개하였는데, 다음 글에서는 최적 전략이 무엇인지 알아보도록 하겠다.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:footnote1">
+<p>다만 이미 $\alpha$ 분 만큼의 시간이 지나는 동안 버스 B가 오지 않았으므로 이에 대한 부분은 확률 계산에서 빼주어야 정확한 계산이 된다. 하지만 정확한 계산은 쉽지 않다. 일단은 이 부분에 대한 고민은 무시한다.&#160;<a class="footnote-backref" href="#fnref:footnote1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+  </div><!-- /.entry-content -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'shurain'; 
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+            <hr/>
+            <footer id="contentinfo" class="footer">
+                <div>
+                    <a href="http://blog.shurain.net">Sungjoo Ha</a> (2013)
+                </div>
+                <div>
+                    Design licensed under <a rel="license" href="http://opensource.org/licenses/bsd-3-clause">3 clause BSD</a>. Source code available on <a rel="source code" href="https://github.com/slok/blog">Github</a>
+                </div>
+                <div>
+                    powered by <a href="http://getpelican.com/">Pelican</a>
+                    and <a href="http://python.org">Python</a>.
+                    <a href="http://github.com/slok/iris">Theme</a> by <a href="http://xlarrakoetxea.org">Xabier Larrakoetxea</a> based on <a href="http://flask.pocoo.org/">Flask</a> theme
+                </div>
+                <div>
+                    Social icons (font awesome) by <a href="http://fortawesome.github.com/Font-Awesome/"> fort awesome<a>.
+                    <a href="http://www.google.com/webfonts/specimen/The+Girl+Next+Door">Title</a>, <a href="http://www.google.com/webfonts/specimen/Marcellus">headers</a> and <a href="http://www.google.com/webfonts/specimen/Inconsolata">source code</a> fonts by google fonts
+                </div>
+                <div class="social">
+                        <a href="https://www.facebook.com/shurain.net"><i class="icon-facebook"></i>  </a>
+                        <a href="http://twitter.com/shurain_"><i class="icon-twitter"></i>  </a>
+                        <a href="https://github.com/shurain/"><i class="icon-github"></i>  </a>
+                </div>
+            </footer><!-- /#contentinfo -->
+        </div>
+
+        <!-- Javascript-->
+        <script src="http://blog.shurain.net/theme/js/invisible-menu-scroll.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+        <script type="text/javascript">
+          $(function() {
+            invisibleMenu();
+          });
+        </script>
+
+        <!--Add statistycs-->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', "UA-20801130-1"]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
