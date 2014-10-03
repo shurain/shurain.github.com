@@ -5,7 +5,7 @@
 밤새 심한 폭풍이 몰아쳐서 각 다리가 독립적으로 50%의 확률로 끊어졌을 수 있다.
 이런 상황에서 여행자가 여전히 맞은 편으로 갈 수 있는 확률은 얼마인가?&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;
-&lt;img alt="Symmetric Bridge" src="/static/images/symmetry_bridge.jpg" /&gt;
+&lt;img alt="Symmetric Bridge" src="https://farm6.staticflickr.com/5598/15430136565_bfb2f25682.jpg" /&gt;
 &lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;제일 먼저 떠오르는 것은 각 경우를 모두 세보는 것이다. 다리가 무너지지 않은 것을 1, 무너진 것을 0으로 표현하면 총 32가지의 경우가 있다.
 이를 잘 세보면 총 16가지 경우에 다리를 건널 수 있는 것을 쉽게 확인할 수 있다. 그러므로 여행자가 강을 건널 수 있을 확률은 50%이다.&lt;/p&gt;
@@ -23,7 +23,7 @@ $p(여행자) = 1 - p(보트)$
 &lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;이를 바탕으로 여행자가 강을 건널 수 있는 확률은 50%임을 쉽게 확인할 수 있다.&lt;/p&gt;
 &lt;h2&gt;Principle of Symmetry&lt;/h2&gt;
-&lt;p&gt;확률 문제에서 대칭성을 활용하여 문제에 쉽게 접근할 수 있는 경우도 종종 있다.
+&lt;p&gt;위에서 본 것처럼 확률 문제에서 대칭성을 활용하여 문제에 쉽게 접근할 수 있는 경우가 종종 있다.
 가장 대표적인 것이 선 위에 점이 떨어질 때의 대칭성을 활용하는 것이다.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;어떤 구간에 $n$개의 점이 임의로 떨어지면, 생성되는 $n+1$개의 작은 구간은 평균적으로 같은 분포를 갖게 된다.&lt;sup id="fnref:principle-of-symmetry"&gt;&lt;a class="footnote-ref" href="#fn:principle-of-symmetry" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
