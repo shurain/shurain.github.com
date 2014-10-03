@@ -12,7 +12,7 @@ Category: Blog
 이런 상황에서 여행자가 여전히 맞은 편으로 갈 수 있는 확률은 얼마인가?
 
 <center>
-![Symmetric Bridge](/static/images/symmetry_bridge.jpg)
+![Symmetric Bridge](https://farm6.staticflickr.com/5598/15430136565_bfb2f25682.jpg)
 </center>
 
 제일 먼저 떠오르는 것은 각 경우를 모두 세보는 것이다. 다리가 무너지지 않은 것을 1, 무너진 것을 0으로 표현하면 총 32가지의 경우가 있다.
