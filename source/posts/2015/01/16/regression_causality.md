@@ -13,11 +13,16 @@ Category: Blog
 
 Bayesian의 관점에서 생각해보면 regularization은 우리가 세상에 대해 갖고 있는 prior knowledge를 반영한 것이다. 단순히 predictive accuracy를 높이기 위해 다양한 방법으로 이런 prior를 검증을 해보고 이를 바탕으로 예측을 하는 것은 괜찮을 수 있다. 하지만 모델로부터 세상을 해석하려고 할 때의 문제를 살펴보자. Sparse linear model을 생각해보면 아예 subset selection 문제로 접근하는 것도 가능하고 ridge나 lasso 등의 regularization 문제로 모델링 하는 것도 가능하다.
 
-![Sparse Model](https://www.evernote.com/shard/s25/sh/b3e173a3-3d91-4076-8b9f-5b0288cc76f5/be92f6f5a4ab2e6dddfb38407d5c163b/deep/0/Murphy---2012---Machine-Learning-A-Probabilistic-Perspective.pdf-(page-467-of-1098).png)
+
+<center>
+<img src="https://www.evernote.com/shard/s25/sh/b3e173a3-3d91-4076-8b9f-5b0288cc76f5/be92f6f5a4ab2e6dddfb38407d5c163b/deep/0/Murphy---2012---Machine-Learning-A-Probabilistic-Perspective.pdf-(page-467-of-1098).png" alt="Sparse Model" style="width: 90%;"/>
+</center>
 
 위의 예에서는 Lasso가 가장 좋은 predictive accuracy를 내지만 이는 문제의 특성에 따라 달라질 수 있다. 가령 위의 예에서 best subset과 ridge만 비교한다면 best subset이 더 예측력이 높기 때문에 이게 현실을 해석하는 용도로 사용되어도 괜찮은 것일까? 그렇다면 svi는 암 발병에 영향을 전혀 주지 않는 요소라고 말해도 괜찮은 것일까? 반대로 best subset과 lasso를 비교해보면 svi가 양의 weight를 가지므로 svi가 암 발병의 원인이 된다고 말할 수 있는 것일까?
 
-![Regularization](https://www.evernote.com/shard/s25/sh/f33e1fd4-5b6b-4820-9580-8f880fb242b2/562078df2ace0d03b73c0440c28b634a/deep/0/Murphy---2012---Machine-Learning-A-Probabilistic-Perspective.pdf-(page-468-of-1098).png)
+<center>
+<img src="https://www.evernote.com/shard/s25/sh/f33e1fd4-5b6b-4820-9580-8f880fb242b2/562078df2ace0d03b73c0440c28b634a/deep/0/Murphy---2012---Machine-Learning-A-Probabilistic-Perspective.pdf-(page-468-of-1098).png" alt="Regularization" style="width: 90%;"/>
+</center>
 
 
 같은 방법이라도 regularization의 강도를 얼마나 주느냐에 따라 다른 결과를 얻을 수 있다. CV를 거쳐서 hyper parameter를 결정했기 때문에 이것으로부터 현실을 해석해도 되는 것일까? 이런 종류의 모델 읽기 실수는 무척 저지르기 쉽다. 언제나 이런 해석에는 주의를 기울여야 한다.[^pitfall]
