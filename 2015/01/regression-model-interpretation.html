@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-                <title>Naive Bayes Classifier</title>
+                <title>Regression and Model Interpretation</title>
         <!-- Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
 
@@ -56,36 +56,39 @@
             <section id="content" class="body">
   <header class="post">
     <h1 class="entry-title">
-      Naive Bayes Classifier
+      Regression and Model Interpretation
     </h1>
   </header>
   <footer class="post-info">
     <abbr>
-      Thu 31 October 2013 
+      Fri 16 January 2015 
                By <a class="url fn" href="../../author/sungjoo-ha.html">Sungjoo Ha</a>
         
     </abbr>
   </footer><!-- /.post-info -->
   <div class="entry-content">
-    <h2>Introduction</h2>
-<p>스팸 문서 판별에 가장 쉽게 사용할 수 있는 기계 학습 기법으로 <a href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier">나이브 베이즈 분류기</a>가 있다.
-최근에 이와 관련된 간단한 발표를 할 일이 있어서 <a href="http://cl.ly/0s2U3L0Y2Q0L">관련 자료</a>를 만들어 보았다.
-대부분의 내용은 Mathematicalmonk의 <a href="https://www.youtube.com/watch?v=8yvBqhm92xA&amp;list=PLD0F06AA0D2E8FFBA&amp;index=46">Naive Bayes classification 영상</a>을 참고하였다.</p>
-<h2>Naive Bayes</h2>
-<p>자세한 이야기는 발표 자료를 참고하기로 하고, 몇 가지 언급하고 싶은 것들만 짚어보도록 하겠다.</p>
-<h3>Conditional Independence</h3>
-<p>나이브 베이즈에서 "나이브"라는 이름이 붙은 이유는 레이블이 이미 주어졌다고 가정하면 (conditional), 피쳐들이 서로 독립이라는 (independence) 가정 때문이다.
-이는 패러미터를 유추하는 작업을 쉽게 만들기 위해서 도입되었다고 생각되는데, 다행히도 문서를 다룰 때에는 이러한 독립성 가정이 잘 동작하는 편이다.</p>
-<h3>Bayes Theorem &amp; Bayesian Inference</h3>
-<p>나이브 베이즈의 "베이즈"는 베이즈 정리를 사용한 부분에서 나온 것이다.
-그저 베이즈 정리를 사용할 뿐이지 딱히 베이지안 추론 기법은 아니라는 점을 이해하는 것이 중요하다.
-베이지안 추론 기법은 모델의 패러미터를 전부 고려하여 이를 적분해버리는 것이 골자이지 베이즈 정리를 사용하는 것이 핵심이 아니다.
-대부분의 나이브 베이즈 구현은 모델 패러미터를 maximum likelihood estimate을 사용하여 추정하는데, 이는 point estimate에 불과하고 진정한 의미의 베이지안은 아니다.
-베이지안에 대해 더 알고 싶다면 이를 잘 정리한 <a href="http://normaldeviate.wordpress.com/2012/11/17/what-is-bayesianfrequentist-inference/">WHAT IS BAYESIAN/FREQUENTIST INFERENCE?</a>를 참고하기 바란다.
-위의 글에서 Nate Silver의 책 Signal and the Noise 혹은 Sharon McGrayne의 책 The Theory That Would Not Die 등에서 행하는 흔한 실수에 대해 논한다.<a href="#footnote1"><span id="ref">[1]</span></a></p>
-<p><span id="footnote1">
-<a href="#ref1">[1]</a>: 이에 대한 더 자세한 글로 동일 저자의 글인 <a href="http://normaldeviate.wordpress.com/2012/12/04/nate-silver-is-a-frequentist-review-of-the-signal-and-the-noise/">Nate Silver Is A Frequentist</a>도 있다.
-</span></p>
+    <blockquote>
+<p>$m = b_0 + b_1 x_1 + b_2 x_2 + \ldots + b_p x_p$</p>
+<p>Do you see? We model the $m$; we say the $m$ is a function of various things, the $x$'s. Maybe one of the $x$'s is age, another is sex, a third is income, a fourth is BMI, a fifth is height, a sixth is presence of some gene, a seventh is whether the individual is a science major, an eighth is whether the individual is Caucasian, a ninth is high school GPA, a tenth is SAT score, an eleventh, a twelfth, thirteenth, and on and on and so on some more. You'd never make it as a sociologist unless you can think of at least two dozen entries.</p>
+<p>Consider that the $x$ which represents whether the individual is Caucasian increases m. That does not therefore mean whites have higher GPAs than non-whites. No no no no no. No. It says, very indirectly and after manipulation most people forget to or don’t do, that given this model and these $x$'s, the probability whites have higher GPAs than non-whites is greater than 50%. (The exact probability can be calculated.)<sup id="fnref:regression-not-what-you-think"><a class="footnote-ref" href="#fn:regression-not-what-you-think" rel="footnote">1</a></sup></p>
+</blockquote>
+<p>흔히 선형 모델을 만들고 각 요소의 regression weight로 현실을 해석하려 한다. 위의 인용에서 사용된 예를 살펴보자. 만약 코카시언의 여부가 GPA의 선형 모델의 피쳐로 들어가고 그 weight가 양수라고 하자. 이를 백인이, 백인이 아닌 사람보다 GPA가 높다고 해석해서는 안 된다. 위의 인용에서 볼 수 있다시피 이는 무척 많은 가정을 깔고 들어간 후에야 백인의 GPA가 백인이 아닌 사람의 GPA보다 높을 확률이 50% 이상이라는 설명을 할 수 있다.</p>
+<p>Bayesian의 관점에서 생각해보면 regularization은 우리가 세상에 대해 갖고 있는 prior knowledge를 반영한 것이다. 단순히 predictive accuracy를 높이기 위해 다양한 방법으로 이런 prior를 검증을 해보고 이를 바탕으로 예측을 하는 것은 괜찮을 수 있다. 하지만 모델로부터 세상을 해석하려고 할 때의 문제를 살펴보자. Sparse linear model을 생각해보면 아예 subset selection 문제로 접근하는 것도 가능하고 ridge나 lasso 등의 regularization 문제로 모델링 하는 것도 가능하다.</p>
+<p><img alt="Sparse Model" src="https://www.evernote.com/shard/s25/sh/b3e173a3-3d91-4076-8b9f-5b0288cc76f5/be92f6f5a4ab2e6dddfb38407d5c163b/deep/0/Murphy---2012---Machine-Learning-A-Probabilistic-Perspective.pdf-(page-467-of-1098" />.png)</p>
+<p>위의 예에서는 Lasso가 가장 좋은 predictive accuracy를 내지만 이는 문제의 특성에 따라 달라질 수 있다. 가령 위의 예에서 best subset과 ridge만 비교한다면 best subset이 더 예측력이 높기 때문에 이게 현실을 해석하는 용도로 사용되어도 괜찮은 것일까? 그렇다면 svi는 암 발병에 영향을 전혀 주지 않는 요소라고 말해도 괜찮은 것일까? 반대로 best subset과 lasso를 비교해보면 svi가 양의 weight를 가지므로 svi가 암 발병의 원인이 된다고 말할 수 있는 것일까?</p>
+<p><img alt="Regularization" src="https://www.evernote.com/shard/s25/sh/f33e1fd4-5b6b-4820-9580-8f880fb242b2/562078df2ace0d03b73c0440c28b634a/deep/0/Murphy---2012---Machine-Learning-A-Probabilistic-Perspective.pdf-(page-468-of-1098" />.png)</p>
+<p>같은 방법이라도 regularization의 강도를 얼마나 주느냐에 따라 다른 결과를 얻을 수 있다. CV를 거쳐서 hyper parameter를 결정했기 때문에 이것으로부터 현실을 해석해도 되는 것일까? 이런 종류의 모델 읽기 실수는 무척 저지르기 쉽다. 언제나 이런 해석에는 주의를 기울여야 한다.<sup id="fnref:pitfall"><a class="footnote-ref" href="#fn:pitfall" rel="footnote">2</a></sup></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:regression-not-what-you-think">
+<p><a href="http://wmbriggs.com/blog/?p=12524">Regression Isn’t What You Think</a>&#160;<a class="footnote-backref" href="#fnref:regression-not-what-you-think" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:pitfall">
+<p>이런 종류의 문제로 신뢰 구간, 유의 수준 등등도 있다. 진지한 연구자들조차 늘상 틀리는 개념들이다.&#160;<a class="footnote-backref" href="#fnref:pitfall" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
   </div><!-- /.entry-content -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">

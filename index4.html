@@ -50,7 +50,7 @@
         </header><!-- /#banner -->
         <nav id="menu"><ul>
                     <li><a href="/archives.html">Archives</a></li>
-                                      <li><a href="./2014/10/pages/about.html">About</a></li>
+                                      <li><a href="./2015/01/pages/about.html">About</a></li>
                           </ul></nav><!-- /#menu -->
         <div class="box">
                     
@@ -62,21 +62,22 @@
             <article class="archive">
                 <header> 
                     <h1 class="archive-entry-title">
-                        <a href="./2013/07/code-sprint-2013-round-2.html" rel="bookmark" title="Permalink to Code Sprint 2013 Round 2">Code Sprint 2013 Round 2</a>
+                        <a href="./2013/10/naive-bayes-classifier.html" rel="bookmark" title="Permalink to Naive Bayes Classifier">Naive Bayes Classifier</a>
                     </h1> 
                 </header>
                 <footer class="post-info">
                     <abbr>
-                      Sat 20 July 2013 
+                      Thu 31 October 2013 
                                                By <a class="url fn" href="./author/sungjoo-ha.html">Sungjoo Ha</a>
                         
                     </abbr>
                     <div class="entry-summary"> <h2>Introduction</h2>
-<p>SK planet에서 정기적으로 Code Sprint라는 프로그래밍 경진 대회를 주최한다. 얼마 전에 Code Sprint 2013의 라운드 2 결과가 나왔는데 운이 좋게도 내가 1위를 할 수 있었다. 이번 대회의 목표는 과거의 교통정보 데이터를 사용하여 미래의 교통정보를 예측하는 것이었다.</p>
-<p>대회 페이지의 설명을 그대로 옮겨보면, </p>
-<blockquote>
-<p>코드스프린트 Round2 문제에서는 2013년 4월부터 6월까지 3개월간의 T ...</p></blockquote>
-                    <a href="./2013/07/code-sprint-2013-round-2.html">read more</a></div>
+<p>스팸 문서 판별에 가장 쉽게 사용할 수 있는 기계 학습 기법으로 <a href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier">나이브 베이즈 분류기</a>가 있다.
+최근에 이와 관련된 간단한 발표를 할 일이 있어서 <a href="http://cl.ly/0s2U3L0Y2Q0L">관련 자료</a>를 만들어 보았다.
+대부분의 내용은 Mathematicalmonk의 <a href="https://www.youtube.com/watch?v=8yvBqhm92xA&amp;list=PLD0F06AA0D2E8FFBA&amp;index=46">Naive Bayes classification 영상</a>을 참고하였다.</p>
+<h2>Naive Bayes</h2>
+<p>자세한 이야기는 발표 자료를 참고하기로 하고, 몇 가지 언급하고 ...</p>
+                    <a href="./2013/10/naive-bayes-classifier.html">read more</a></div>
                 </footer><!-- /.post-info -->
                 <!-- /.entry-content -->
             </article>
@@ -86,22 +87,27 @@
             <article class="archive">
                 <header> 
                     <h1 class="archive-entry-title">
-                        <a href="./2013/05/text-segmentation.html" rel="bookmark" title="Permalink to Text Segmentation">Text Segmentation</a>
+                        <a href="./2013/08/code-sprint-2013-round-2-post-mortem.html" rel="bookmark" title="Permalink to Code Sprint 2013 Round 2 Post-mortem">Code Sprint 2013 Round 2 Post-mortem</a>
                     </h1> 
                 </header>
                 <footer class="post-info">
                     <abbr>
-                      Thu 02 May 2013 
+                      Tue 27 August 2013 
                                                By <a class="url fn" href="./author/sungjoo-ha.html">Sungjoo Ha</a>
                         
                     </abbr>
-                    <div class="entry-summary"> <h2>Introduction</h2>
-<p>모든 기계학습 기법이 그렇듯 CRF도 주어진 데이터에 따라 체감할 수 있는 성능 차이가 크다.
-기계학습은 데이터를 바탕으로 어떤 모델을 만들어내는 방법이라고 생각할 수 있는데, 주어진 데이터가 우리가 원하는 모델을 만들어 내는데 필요한 정보를 갖고 있지 않으면 이는 불가능하다.</p>
-<p><a href="http://homes.cs.washington.edu/~pedrod/">Pedro Domingos</a>는 기계학습을 정원을 가꾸는 것에 비유했다. <a href="#footnote1"><span id="ref1">[1]</span></a></p>
-<ul>
-<li>Seeds = Algorithms ...</li></ul>
-                    <a href="./2013/05/text-segmentation.html">read more</a></div>
+                    <div class="entry-summary"> <style>
+.err {
+    color: #000000;
+    border: none;
+}
+</style>
+
+<h2>Introduction</h2>
+<p><a href="/2013/07/code-sprint-2013-round-2.html">지난 글</a>에서 내가 어떤 방법을 사용해서 <a href="http://codesprint.skplanet.com/2013/intro/round_02.htm">Code Sprint 라운드 2</a>에서 우승을 할 수 있었는지 설명하였다. 이번엔 지난 글에서 못다 한 이야기와 만약 나에게 주어진 시간이 충분했더라면 어떤 식의 접근을 했을지를 논하는 일종의 post-mortem을 이야기해보자.</p>
+<h2>Bayesian Story</h2>
+<p>기존 대회에서는 주어진 데이터를 posterior sample이라고 ...</p>
+                    <a href="./2013/08/code-sprint-2013-round-2-post-mortem.html">read more</a></div>
                 </footer><!-- /.post-info -->
                 <!-- /.entry-content -->
             </article>
@@ -110,7 +116,7 @@
 </div>
 <p class="paginator">
                         <a href="./index3.html">&laquo;</a>
-                Page 4 / 6
+                Page 4 / 7
             <a href="./index5.html">&raquo;</a>
     </p>
 </section><!-- /#content -->
