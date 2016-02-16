@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Text Segmentation</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
+                <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="A Pelican Blog Atom Feed" />
+                
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="./css/ie.css"/>
+                <script src="./js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="./css/ie6.css"/><![endif]-->
+
+                </head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">A Pelican Blog </a></h1>
+                <nav><ul>
+                                                                                                    <li class="active"><a href="./category/blog.html">Blog</a></li>
+                                </ul></nav>
+        </header><!-- /#banner -->
+        <section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./text-segmentation.html" rel="bookmark"
+           title="Permalink to Text Segmentation">Text Segmentation</a></h1>
+          </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2013-05-02T00:00:00">
+                Thu 02 May 2013
+        </abbr>
+
+        <p>In <a href="./category/blog.html">Blog</a>. </p>
+<p>tags: <a href="./tag/crf.html">crf</a><a href="./tag/text-segmentation.html">text segmentation</a></p>
+</footer><!-- /.post-info -->      <h2>Introduction</h2>
+<p>모든 기계학습 기법이 그렇듯 CRF도 주어진 데이터에 따라 체감할 수 있는 성능 차이가 크다.
+기계학습은 데이터를 바탕으로 어떤 모델을 만들어내는 방법이라고 생각할 수 있는데, 주어진 데이터가 우리가 원하는 모델을 만들어 내는데 필요한 정보를 갖고 있지 않으면 이는 불가능하다.</p>
+<p><a href="http://homes.cs.washington.edu/~pedrod/">Pedro Domingos</a>는 기계학습을 정원을 가꾸는 것에 비유했다. <a href="#footnote1"><span id="ref1">[1]</span></a></p>
+<ul>
+<li>Seeds = Algorithms</li>
+<li>Nutrients = Data</li>
+<li>Gardener = You</li>
+<li>Plants = Program</li>
+</ul>
+<p>기계학습의 엄청난 강점은 굉장히 많은 일을 데이터가 대신 해준다는 것이다. 
+기존의 프로그래밍을 생각해보면 프로그래머가 모든 프로그램을 작성해야 했다.
+그러나 기계학습에서는 어떤 특정한 일을 하는 프로그램을 만들기 위해서 기본적인 기계학습 알고리즘에 데이터를 잔뜩 부어 넣어서 목표로 하는 프로그램을 만들어낸다.
+이는 마치 정원사가 정원에 씨앗을 심고 약간만 신경을 써주면 거의 대부분의 일을 자연이 해주는 것과 유사하다.
+하지만 이는 결국 데이터가 아주아주 중요하다는 것을 알 수 있다.
+쓰레기 데이터를 넣으면 쓰레기 결과가 나올 수 밖에 없다. <a href="#footnote2"><span id="ref2">[2]</span></a></p>
+<h2>Text Segmentation</h2>
+<p><a href="http://blog.shurain.net/2013/04/crf.html">지난 글</a>에서 CRF를 개략적으로 살펴보고 이를 한국어 띄어쓰기에 적용한 예를 살펴보았다.
+지난 예에서는 한국어 위키백과의 데이터를 사용하여 띄어쓰기를 위한 CRF를 학습하였다. 
+이 모델은 표준어를 띄어 쓰는 것은 꽤 잘한다.
+그러나 구어체 혹은 비속어 및 비문, 오타 등을 마주치게 되면 잘 처리하지 못하는 모습을 보여준다.</p>
+<p>원본: <em>아근데어무리생가해도이주인격같에</em> <br />
+기존 교정: <em>아근데어_무리생가해도_이주_인격같에</em></p>
+<p>이는 당연한 현상인데, 한국어 위키백과에 구어체, 비속어 및 비문 등은 거의 없을 것이기 때문이다.
+데이터가 힘든 일을 대신 해줘야 하는데, 데이터가 이를 못하는 상황인 것이다.
+이를 해결하기 위해서 구어체 등을 포함한 데이터를 넣어줄 필요가 있다.</p>
+<p>지난 글에서 각주에 언급했지만 사실 좋은 데이터를 구하는 것은 어려운 일이다.
+대규모 서비스를 운영하는 입장에서는 그런 데이터가 충분히 있겠지만 재미삼아 하는 입장에서는 데이터 획득이 만만한 일이 아니다. 
+지난 번에는 한국어 위키백과 자료를 활용했는데, 이번에는 <a href="http://rigvedawiki.net/r1/wiki.php">엔하위키</a>의 데이터를 추가하였다. <a href="#footnote3"><span id="ref3">[3]</span></a> 
+엔하위키는 위키백과에 비해 상대적으로 덜 딱딱하고 구어체에 가까운 문법을 사용하는 것을 볼 수 있으며, 많은 종류의 인터넷 용어도 포함하고 있다.</p>
+<p>실질적으로 지난번과 달라진 것은 크게 없다.
+대용량 처리를 위해 다양한 라이브러리를 시도해보긴 했으나 <a href="#footnote4"><span id="ref4">[4]</span></a> 모두 CRF를 사용하고 비슷한 종류의 최적화 기법을 바탕으로 학습을 하게 되어 있어서 큰 차이는 없다고 보면 된다.
+사실상 달라진 부분은 데이터를 한국어 위키백과만 사용하던 것에서 엔하위키의 데이터를 포함한 것뿐이라고 생각하면 된다.
+그러나 데이터만 달라져도 결과의 품질은 크게 달라진다.</p>
+<p>단적인 예를 좀 보면,</p>
+<p>원본: <em>아근데어무리생가해도이주인격같에</em> <br />
+기존 교정: <em>아근데어_무리생가해도_이주_인격같에</em> <br />
+새 교정: <em>아_근데_어무리_생가해도_이주인격_같에</em></p>
+<p>원본: <em>먹는거조심하슝곧중간이자나ㅠㅠ</em> <br />
+기존 교정: <em>먹는_거조심하슝_곧_중간이자나_ㅠㅠ</em> <br />
+새 교정: <em>먹는거_조심하슝_곧_중간이자나ㅠㅠ</em> <a href="#footnote5"><span id="ref5">[5]</span></a></p>
+<p>결과물이 극적으로 좋아졌는데, 이는 새로 추가한 말뭉치가 이러한 종류의 데이터를 잘 소화할 수 있는 모델을 만드는 데 큰 도움을 준 것임을 쉽게 유추할 수 있다.</p>
+<p><span id="footnote1">
+<a href="#ref1">[1]</a>: <a href="https://www.coursera.org/course/machlearning">Machine Learning by Pedro Domingos</a>
+</span></p>
+<p><span id="footnote2">
+<a href="#ref2">[2]</a>: <a href="http://en.wikipedia.org/wiki/Garbage_in,_garbage_out">Garbage in, garbage out</a>
+</span></p>
+<p><span id="footnote3">
+<a href="#ref3">[3]</a>: <a href="http://ko.wikipedia.org/wiki/%EC%97%94%ED%95%98%EC%9C%84%ED%82%A4">엔하위키</a>
+</span></p>
+<p><span id="footnote4">
+<a href="#ref4">[4]</a>: CRF 학습에 필요한 메모리가 꽤 커서 <a href="http://aws.amazon.com/">AWS</a>를 활용하였다.
+</span></p>
+<p><span id="footnote5">
+<a href="#ref5">[5]</a>: 트위터에서 임의로 수집한 테스트 케이스이다.
+</span></p>
+    </div><!-- /.entry-content -->
+    
+  </article>
+</section>
+        <section id="extras" class="body">
+                        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Bayesian Approach to the Price is Right's Showdown</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
+                <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="A Pelican Blog Atom Feed" />
+                
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="./css/ie.css"/>
+                <script src="./js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="./css/ie6.css"/><![endif]-->
+
+                </head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">A Pelican Blog </a></h1>
+                <nav><ul>
+                                                                                                    <li class="active"><a href="./category/blog.html">Blog</a></li>
+                                </ul></nav>
+        </header><!-- /#banner -->
+        <section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./price-rights.html" rel="bookmark"
+           title="Permalink to Bayesian Approach to the Price is Right's Showdown">Bayesian Approach to the Price is Right's Showdown</a></h1>
+          </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2013-03-12T00:00:00">
+                Tue 12 March 2013
+        </abbr>
+
+        <p>In <a href="./category/blog.html">Blog</a>. </p>
+
+</footer><!-- /.post-info -->      <p><a href="/2013/02/darkworld2.html">지난 글</a>에서 Observing Dark Worlds 대회에 1, 2위가
+사용한 방법을 설명하면서 Bayesian 방식으로 문제에 접근하는 이야기를 했었다.
+이런 Bayesian 방식을 쉽게 잘 설명한 글로
+<a href="http://camdp.com/blogs/how-solve-price-rights-showdown">How to solve the Price is Right's Showdown</a>이라는
+블로그 글이 있다.</p>
+<p>이 글은 <a href="http://en.wikipedia.org/wiki/The_Price_Is_Right">The Price Is Right</a>이라는
+TV 쇼의 마지막 대결 The Showcase를 Bayesian 방식으로 풀어보는 시도에 대한 이야기하고 있다.
+문제에 대한 자세한 정보는 원문을 참고하길 바란다.</p>
+<p>전체적으로는 prior belief를 설정하고 likelihood 계산을 위한 모델 설정 뒤에
+<a href="https://github.com/pymc-devs/pymc">PyMC</a> 라이브러리를 사용하여 MCMC 계산을 한다.
+그리고 loss function을 정의하여 그에 따른 expected loss optimization을 수행하는 전통적인 구조를 잘 보여준다.
+같은 기법이 다른 문제에 적용된 사례이니 지난 글의 내용이 잘 이해가 되지 않았던 분들은 한 번 읽어보시면 도움이 될 것이다.</p>
+<p>글의 내용은 오픈 소스 책인
+<a href="https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers">Probabilistic Programming and Bayesian Methods for Hackers in Python</a>의
+내용을 따와서 많이 수정하여 만들었다고 한다.<a href="#footnote1"><span id="ref1">[1]</span></a>
+아직 책의 내용을 살펴볼 기회는 없었지만 기초적인 Bayesian 기법에 대해 실제로 사용해보는 것을 위주로<a href="#footnote2"><span id="ref2">[2]</span></a>
+쓰여 있다고 하니 이런 내용에 관심 있는 사람들은 한 번 보면 좋을 것이다.</p>
+<p><span id="footnote1">
+<a href="#ref1">[1]</a>: 책 저자가 블로그 글쓴이
+</span></p>
+<p><span id="footnote2">
+<a href="#ref2">[2]</a>: 사람들이 질려 할만한 수학은 가능하면 2순위로 미루고
+</span></p>
+    </div><!-- /.entry-content -->
+    
+  </article>
+</section>
+        <section id="extras" class="body">
+                        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
